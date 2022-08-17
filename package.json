@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "date-fns": "^2.29.1",
     "next": "12.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "rss-parser": "^3.12.0"
   },
   "devDependencies": {
     "eslint": "8.21.0",
