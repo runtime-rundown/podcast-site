@@ -1,3 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+
+/* ensuring a 100% height page */
+html,
+body,
+body > div:first-child,
+div#__next,
+div#__next > div {
+  height: 100%;
+}
+
+/* ensuring a flexible layout  height*/
+div#__next {
+  display: flex;
+  flex-direction: column;
+}
+
+
 html,
 body {
   padding: 0;
@@ -6,14 +27,21 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+
+
+
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
-}
+
 
 @media (prefers-color-scheme: dark) {
   html {
@@ -24,3 +52,4 @@ a {
     background: black;
   }
 }
+
