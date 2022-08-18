@@ -12,7 +12,7 @@ div#__next > div {
   height: 100%;
 }
 
-/* ensuring a flexible layout  height*/
+/* ensuring a flexible layout  height */
 div#__next {
   display: flex;
   flex-direction: column;
