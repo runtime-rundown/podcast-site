@@ -8,14 +8,14 @@ const EpisodePage = (props) => {
     return <div>loading...</div>;
   }
   return (
-    <main>
+    <>
       <div>{props.pubDate}</div>
       <audio controls>
         <source src={props.src} type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
       <div dangerouslySetInnerHTML={{ __html: props.content }} />
-    </main>
+    </>
   );
 };
 
