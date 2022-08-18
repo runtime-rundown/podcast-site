@@ -1,7 +1,5 @@
-import Head from 'next/head';
 import { format } from 'date-fns';
 import { FEED, getFeed } from '../feeds/rss';
-import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 
 const processTitle = (title) => {
@@ -10,8 +8,8 @@ const processTitle = (title) => {
 
 export default function Home({ feed, items }) {
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Welcome to Runtime Rundown!</h1>
+    <div>
+      <h1>Welcome to Runtime Rundown!</h1>
       <div>
         {items.map((item) => {
           console.log(item.enclosure);
