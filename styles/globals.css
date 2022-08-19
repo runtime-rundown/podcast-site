@@ -1,3 +1,15 @@
+html {
+  --base-color-pink: #f7b4a7;
+  --base-color-blue: #104284;
+  --base-color-light-blue: #3c6ca4;
+  --base-color-teal: #94ddde;
+  --base-color-black: #143c3c;
+  --base-color-light-teal: #befdff;
+
+  --base-x-padding: 0 32px;
+}
+
+
 * {
   box-sizing: border-box;
 }
