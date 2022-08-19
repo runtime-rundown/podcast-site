@@ -1,5 +1,5 @@
 .main {
-  padding: 2rem;
+  padding: var(--base-x-padding);
   flex-grow: 1;
   overflow: auto;
 }
