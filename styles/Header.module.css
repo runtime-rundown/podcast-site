@@ -1,5 +1,19 @@
 .Header {
-  background-color: red;
-  margin: 0;
-  min-height: 50px;
+  padding: var(--base-x-padding);
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.HeaderLinks {
+  display: flex;
+}
+
+.HeaderLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.HeaderLink:first-child {
+  margin-left: 0;
 }
