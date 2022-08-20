@@ -1,11 +1,13 @@
 .Header {
   padding: var(--base-x-padding);
+  border-bottom: 2px solid var(--color-accent-blue);
+  background-color: var(--color-base-white);
+  color: var(--color-base-blue);
   padding-top: 6px;
   padding-bottom: 6px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--base-color-black);
 }
 
 .HeaderPageLink::after {

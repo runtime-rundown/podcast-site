@@ -1,8 +1,9 @@
 .main {
   padding: var(--base-x-padding);
+  background-color: var(--color-base-white);
+  color: var(--color-base-blue);
   flex-grow: 1;
   overflow: auto;
-  background-color: var(--base-color-black);
 }
 
 .code {

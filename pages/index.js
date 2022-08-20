@@ -12,7 +12,6 @@ export default function Home({ feed, items }) {
       <h1>Welcome to Runtime Rundown!</h1>
       <div>
         {items.map((item) => {
-          console.log(item.enclosure);
           return (
             <Link
               href={{

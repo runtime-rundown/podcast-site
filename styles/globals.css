@@ -1,11 +1,13 @@
 html {
-  --base-color-pink: #f7b4a7;
-  --base-color-blue: #104284;
-  --base-color-light-blue: #3c6ca4;
-  --base-color-teal: #94ddde;
-  --base-color-black: #143c3c;
-  --base-color-light-teal: #befdff;
   --base-x-padding: 0 32px;
+
+  --color-accent-pink: #f7b4a7;
+  --color-accent-purple: #170A91;
+  --color-accent-teal: #0A8C91;
+  --color-accent-blue: #0B249C;
+  --color-base-blue: #104285;
+  --color-base-teal: #0B709C;
+  --color-base-white: #fff;
 }
 
 

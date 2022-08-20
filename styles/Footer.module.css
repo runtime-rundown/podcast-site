@@ -1,5 +1,8 @@
 .footer {
-  background-color: var(--base-color-black);
-  color: var(--base-color-light-teal);
+  border-top: 2px solid var(--color-accent-blue);
+  background-color: var(--color-base-white);
+  color: var(--color-base-blue);
   padding: var(--base-x-padding);
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
