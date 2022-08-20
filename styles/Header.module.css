@@ -1,19 +1,60 @@
 .Header {
   padding: var(--base-x-padding);
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--base-color-black);
+}
+
+.HeaderPageLink::after {
+  content: '📭';
+  opacity: 0;
+  margin-left: 8px;
+  transition: opacity 100ms ease-in;
+}
+
+.HeaderPageLink:hover::after {
+  opacity: 1;
 }
 
 .HeaderLinks {
   display: flex;
+  justify-content: flex-end;
 }
 
 .HeaderLink {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 8px;
 }
 
-.HeaderLink:first-child {
-  margin-left: 0;
+.HeaderLink:hover {
+  animation-name: wiggle;
+  -webkit-animation-name: wiggle;
+  animation-duration: 350ms;
+  -webkit-animation-duration: 350ms;
+  animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+}
+
+
+@-webkit-keyframes wiggle {
+  0% {-webkit-transform: rotate(4deg);}
+  25% {-webkit-transform: rotate(-4deg);}
+  50% {-webkit-transform: rotate(6deg);}
+  75% {-webkit-transform: rotate(-2deg);}
+  100% {-webkit-transform: rotate(0deg);}
+}
+
+@keyframes wiggle {
+  0% {transform: rotate(4deg);}
+  25% {transform: rotate(-4deg);}
+  50% {transform: rotate(6deg);}
+  75% {transform: rotate(-2deg);}
+  100% {transform: rotate(0deg);}
 }

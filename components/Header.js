@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from '../styles/Header.module.css';
 import SpotifyLogo from '../public/spotify-logo.png';
 import AppleLogo from '../public/apple-podcasts-logo.png';
@@ -8,6 +9,9 @@ import GithubLogo from '../public/gh-logo.png';
 const Header = () => {
   return (
     <nav className={styles.Header}>
+      <Link href="/submit">
+        <a className={styles.HeaderPageLink}>Submit a Blog Post</a>
+      </Link>
       <ul className={styles.HeaderLinks}>
         <li className={styles.HeaderLink}>
           <a
@@ -15,7 +19,7 @@ const Header = () => {
             className={styles.HeaderLink}
             href="https://open.spotify.com/show/5mGILWYFVP2IueThL9HgVP?si=0f698b8ec82e4aba"
           >
-            <Image src={SpotifyLogo} alt="Spotify Logo" width="38" height="38" />
+            <Image src={SpotifyLogo} alt="Spotify Logo" width="31" height="31" />
           </a>
         </li>
         <li className={styles.HeaderLink}>
