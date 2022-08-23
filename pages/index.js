@@ -13,16 +13,7 @@ export default function Home({ feed, items }) {
       <div>
         {items.map((item) => {
           return (
-            <Link
-              href={{
-                pathname: `/episodes/${processTitle(item.title)}`,
-                query: {
-                  ...item,
-                  src: item.enclosure.url,
-                },
-              }}
-              key={item.title}
-            >
+            <Link href={`/episodes/${processTitle(item.title)}`} key={item.title}>
               <a>
                 <div className="font-bold">{item.title}</div>
                 <div>{format(new Date(item.isoDate), 'PPP')}</div>
@@ -36,12 +27,11 @@ export default function Home({ feed, items }) {
 }
 
 export async function getStaticProps({ params }) {
-  const feed = FEED;
-  const detailedFeed = await getFeed(feed.url);
+  const detailedFeed = await getFeed(FEED.url);
 
   return {
     props: {
-      feed,
+      feed: FEED,
       items: detailedFeed.items,
     },
     revalidate: 1,

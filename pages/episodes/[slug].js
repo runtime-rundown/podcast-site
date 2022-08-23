@@ -1,33 +1,48 @@
 import { FEED, getFeed } from '../../feeds/rss';
-import { useRouter } from 'next/router';
 
-const EpisodePage = (props) => {
-  console.log(props.link);
-  const router = useRouter();
-  if (router.isFallback) {
-    return <div>loading...</div>;
-  }
+const processTitle = (title) => {
+  return title.toLowerCase().replaceAll(' ', '-');
+};
+
+const EpisodePage = ({ pubDate, content, enclosure: { url: src } }) => {
   return (
     <>
-      <div>{props.pubDate}</div>
+      <div>{pubDate}</div>
       <audio controls>
-        <source src={props.src} type="audio/mpeg" />
+        <source src={src} type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
-      <div dangerouslySetInnerHTML={{ __html: props.content }} />
+      <div dangerouslySetInnerHTML={{ __html: content }} />
     </>
   );
 };
 
 export default EpisodePage;
 
-export async function getServerSideProps(context) {
-  console.log(context.query);
-  console.log('HEY');
+// produces a page for every episode
+export async function getStaticPaths() {
+  const detailedFeed = await getFeed(FEED.url);
+  const paths = detailedFeed.items.map((feedItem) => ({
+    params: { slug: `${processTitle(feedItem.title)}` },
+  }));
 
   return {
-    props: {
-      ...context.query,
-    },
+    paths,
+    fallback: false,
+  };
+}
+
+// `getStaticPaths` requires using `getStaticProps`
+export async function getStaticProps(context) {
+  const {
+    params: { slug },
+  } = context;
+  const { items } = await getFeed(FEED.url);
+  const episode = items.find((item) => {
+    return processTitle(item.title) === slug;
+  });
+  return {
+    // Passed to the page component as props
+    props: { ...episode },
   };
 }
