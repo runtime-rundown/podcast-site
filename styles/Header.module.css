@@ -5,25 +5,12 @@
   color: var(--color-base-blue);
   padding-top: 6px;
   padding-bottom: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.HeaderPageLink::after {
-  content: '📭';
-  opacity: 0;
-  margin-left: 8px;
-  transition: opacity 100ms ease-in;
-}
-
-.HeaderPageLink:hover::after {
-  opacity: 1;
 }
 
 .HeaderLinks {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .HeaderLink {
@@ -31,6 +18,10 @@
   justify-content: center;
   align-items: center;
   margin: 0 8px;
+}
+
+.HeaderLink:first-child, .HeaderLink:last-child {
+  margin: 0;
 }
 
 .HeaderLink:hover {

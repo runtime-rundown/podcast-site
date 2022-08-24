@@ -9,9 +9,6 @@ import GithubLogo from '../public/gh-logo.png';
 const Header = () => {
   return (
     <nav className={styles.Header}>
-      <Link href="/submit">
-        <a className={styles.HeaderPageLink}>Submit a Blog Post</a>
-      </Link>
       <ul className={styles.HeaderLinks}>
         <li className={styles.HeaderLink}>
           <a
