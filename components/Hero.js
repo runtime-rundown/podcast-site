@@ -6,20 +6,23 @@ import styles from '../styles/Hero.module.css';
 const Hero = () => {
   return (
     <div className={styles.Hero}>
-      {/* <div className={styles.HeroLogo}>
-        <Link href="/">
-          <Image
-            className={styles.HeroLogo}
-            src={RuntimeLogo}
-            alt="Runtime Rundown Logo: Depicting a laptop with the words Runtime Rundown"
-            layout="responsive"
-          />
-        </Link>
-      </div> */}
-      <h1 className={styles.HeroTitle}>Runtime Rundown</h1>
-      <h2 className={styles.HeroTitleText}>
-        Breaking Down Interesting Web Dev Blog Posts And Videos
-      </h2>
+      <div>
+        <div className={styles.HeroLogo}>
+          <Link href="/">
+            <Image
+              className={styles.HeroLogo}
+              src={RuntimeLogo}
+              alt="Runtime Rundown Logo: Depicting a laptop with the words Runtime Rundown"
+              layout="responsive"
+            />
+          </Link>
+        </div>
+        <h1 className={styles.HeroTitle}>Runtime Rundown</h1>
+        <h2 className={styles.HeroTitleText}>
+          Breaking Down Interesting Web Dev Blog Posts And Videos
+        </h2>
+      </div>
+
       <hr className={styles.HeroLine} data-content="The Hosts" />
       <div className={styles.HeroIntro}>
         <div className={styles.HeroFriends}>

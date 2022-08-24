@@ -29,8 +29,6 @@
   background-color: var(--color-base-blue);
 }
 
-
-
 .HeroFriend {
   display: flex;
   border: 1px solid var(--color-accent-purple);
@@ -60,6 +58,7 @@
 .HeroTitle {
   font-size: 2em;
   font-weight: 800;
+  margin: 16px 0;
 }
 
 .HeroTitleText {
