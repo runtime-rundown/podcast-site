@@ -1,4 +1,4 @@
-.Hero {
+.hero {
   background-color: var(--color-base-white);
   padding: 16px;
   margin: 16px 0;
@@ -9,7 +9,7 @@
               0 8px 16px rgba(16, 66, 133, .1);
 }
 
-.HeroSubmit {
+.link {
   border: 1px solid var(--color-accent-purple);
   padding: 4px 8px;
   margin: 8px 0;
@@ -22,14 +22,29 @@
 }
 
 
-.HeroSubmitWrapper {
+.linkWrapper {
   border: 1px solid var(--color-accent-purple);
   margin: 8px 0;
   border-radius: 4px;
   background-color: var(--color-base-blue);
 }
 
-.HeroFriend {
+.logo {
+  display: none;
+}
+
+.title {
+  font-size: 2em;
+  font-weight: 800;
+  margin: 16px 0;
+}
+
+.subtitle {
+  margin: 16px 0;
+}
+
+
+.profileCard {
   display: flex;
   border: 1px solid var(--color-accent-purple);
   border-radius: 4px;
@@ -40,14 +55,14 @@
   background-color: white;
 }
 
-.HeroFriendWrapper {
+.profileCardWrapper {
   border: 1px solid var(--color-accent-purple);
   border-radius: 2px;
   margin: 8px 0;
   background-color: var(--color-base-blue);
 }
 
-.HeroImage {
+.avatar {
   border-radius: 50%;
   max-height: 75px;
   max-width: 75px;
@@ -55,17 +70,7 @@
   margin: 4px;
 }
 
-.HeroTitle {
-  font-size: 2em;
-  font-weight: 800;
-  margin: 16px 0;
-}
-
-.HeroTitleText {
-  margin: 16px 0;
-}
-
-.HeroLine {
+.lineBreak {
   line-height: 1em;
   position: relative;
   outline: 0;
@@ -76,7 +81,7 @@
   margin: 16px 0;
 }
 
-.HeroLine:before {
+.lineBreak:before {
   content: "";
   background: linear-gradient(to right, var(--color-base-blue), var(--color-base-blue), transparent);
   position: absolute;
@@ -86,7 +91,7 @@
   height: 1px;
 }
 
-.HeroLine:after {
+.lineBreak:after {
   content: attr(data-content);
   position: relative;
   display: inline-block;
@@ -96,4 +101,23 @@
   color: var(--color-base-blue);
   font-size: 1.25em;
   background-color: #fcfcfa;
+  text-transform: uppercase;
+}
+
+@media (min-width: 850px) {
+
+
+  .logo {
+    display: block;
+  }
+
+  .profileCards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 16px;
+  }
+
+  .lineBreak {
+    display: none;
+  }
 }
