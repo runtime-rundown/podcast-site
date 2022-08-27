@@ -1,12 +1,16 @@
 import { FEED, getFeed } from '../feeds/rss';
 import EpisodeCard from '../components/EpisodeCard';
+import styles from '../styles/Index.module.css';
 
 export default function Home({ feed, items }) {
   return (
     <>
-      {items.map(item => {
-        return <EpisodeCard {...item} key={item.title} />;
-      })}
+      <h2>All Episodes</h2>
+      <div className={styles.gridWrapper}>
+        {items.map(item => {
+          return <EpisodeCard {...item} key={item.title} />;
+        })}
+      </div>
     </>
   );
 }
