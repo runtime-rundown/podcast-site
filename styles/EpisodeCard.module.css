@@ -3,10 +3,9 @@
   border-radius: 2px;
   margin: 16px 0;
   background-color: var(--color-base-blue);
+  padding: 2px;
+  transform: skewX(-1deg) skewY(-.5deg);
 }
-
-
-
 
 .episodeCard {
   background-color: var(--color-base-white);
@@ -23,21 +22,40 @@
   margin: 2px -5px;
   z-index: 1;
   background-color: white;
-}
-
-/* CARD SKEWS */
-.episodeCardWrapper:nth-child(even) {
   transform: skewX(1deg) skewY(.5deg);
 }
 
-.episodeCardWrapper > .episodeCard {
-  transform: skewX(-1deg) skewY(-1deg);
+.episodeCardInternals {
+  display: flex;
+  align-items: center;
+  padding: 4px;
 }
 
-.episodeCardWrapper:nth-child(odd) {
-  transform: skewX(-1deg) skewY(-.5deg);
+.episodeTitle {
+  font-size: 1.25em;
+  text-decoration: underline;
+  margin-bottom: 8px;
 }
 
-.episodeCard:nth-of-type(odd) {
-  transform: skewX(1deg) skewY(.5deg);
+.episodeDate {
+  font-size: 1.25em;
+  width: 40%;
+  word-wrap: break-word;
+  line-height: 1.25em;
+  padding: 8px;
+}
+
+
+@media (min-width: 675px) {
+  .episodeDate {
+    width: 25%;
+  }
+}
+
+@media (min-width: 850px) {
+
+}
+
+@media (min-width: 1200px) {
+
 }
