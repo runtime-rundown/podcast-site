@@ -31,7 +31,11 @@ const Hero = () => {
           <hr className={styles.lineBreak} data-content="Your Hosts" />
           <div className={styles.profileCardsWrapper}>
             <div className={styles.profileCardWrapper}>
-              <a href="https://github.com/helloitsjoe" target="_blank">
+              <a
+                href="https://github.com/helloitsjoe"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <div className={styles.profileCard}>
                   <img
                     src="https://avatars.githubusercontent.com/helloitsjoe?size=200"
@@ -49,7 +53,11 @@ const Hero = () => {
               </a>
             </div>
             <div className={styles.profileCardWrapper}>
-              <a href="https://github.com/Cooperbuilt" target="_blank">
+              <a
+                href="https://github.com/Cooperbuilt"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <div className={styles.profileCard}>
                   <img
                     src="https://avatars.githubusercontent.com/cooperbuilt?size=200"

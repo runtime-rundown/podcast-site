@@ -13,29 +13,52 @@ const Header = () => {
         <li className={styles.HeaderLink}>
           <a
             target="_blank"
+            rel="noreferrer"
             className={styles.HeaderLink}
             href="https://open.spotify.com/show/5mGILWYFVP2IueThL9HgVP?si=0f698b8ec82e4aba"
           >
-            <Image src={SpotifyLogo} alt="Spotify Logo" width="31" height="31" />
+            <Image
+              src={SpotifyLogo}
+              alt="Spotify Logo"
+              width="31"
+              height="31"
+            />
           </a>
         </li>
         <li className={styles.HeaderLink}>
           <a
             target="_blank"
+            rel="noreferrer"
             className={styles.HeaderLink}
             href="https://podcasts.apple.com/us/podcast/runtime-rundown/id1635132420"
           >
-            <Image src={AppleLogo} alt="Apple Podcasts Logo" width="28" height="28" />
-          </a>
-        </li>
-        <li className={styles.HeaderLink}>
-          <a target="_blank" className={styles.HeaderLink} href="https://pca.st/9ifdo34s">
-            <Image src={PocketLogo} alt="PocketCasts Logo" width="28" height="28" />
+            <Image
+              src={AppleLogo}
+              alt="Apple Podcasts Logo"
+              width="28"
+              height="28"
+            />
           </a>
         </li>
         <li className={styles.HeaderLink}>
           <a
             target="_blank"
+            rel="noreferrer"
+            className={styles.HeaderLink}
+            href="https://pca.st/9ifdo34s"
+          >
+            <Image
+              src={PocketLogo}
+              alt="PocketCasts Logo"
+              width="28"
+              height="28"
+            />
+          </a>
+        </li>
+        <li className={styles.HeaderLink}>
+          <a
+            target="_blank"
+            rel="noreferrer"
             className={styles.HeaderLink}
             href="https://anchor.fm/s/a82ae100/podcast/rss"
           >
@@ -60,10 +83,16 @@ const Header = () => {
         <li className={styles.HeaderLink}>
           <a
             target="_blank"
+            rel="noreferrer"
             className={styles.HeaderLink}
             href="https://github.com/Cooperbuilt/runtime-rundown"
           >
-            <Image src={GithubLogo} height="28" width="28" alt="Github Octocat logo" />
+            <Image
+              src={GithubLogo}
+              height="28"
+              width="28"
+              alt="Github Octocat logo"
+            />
           </a>
         </li>
       </ul>
