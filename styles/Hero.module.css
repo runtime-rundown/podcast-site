@@ -124,8 +124,8 @@
     margin-top: 0;
   }
 
-  .profileCardWrapper {
-    margin: 0;
+  .profileCardWrapper:last-child {
+    margin-bottom: 0;
   }
 
   .profileCards {
@@ -155,6 +155,11 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 16px;
   }
+
+  .profileCardWrapper {
+    margin: 0;
+  }
+
   .logo > span {
     max-height: 300px;
   }
