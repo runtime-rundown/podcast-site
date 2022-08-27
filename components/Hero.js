@@ -23,9 +23,9 @@ const Hero = () => {
       <div className={styles.rightRail}>
         <div className={styles.titleWrapper}>
           <h1 className={styles.title}>Runtime Rundown</h1>
-          <h2 className={styles.subtitle}>
+          <p className={styles.subtitle}>
             Breaking Down Interesting Web Dev Blog Posts And Videos
-          </h2>
+          </p>
         </div>
         <div className={styles.profileWrapper}>
           <hr className={styles.lineBreak} data-content="Your Hosts" />
