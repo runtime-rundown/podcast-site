@@ -1,0 +1,43 @@
+.episodeCardWrapper {
+  border: 1px solid var(--color-accent-purple);
+  border-radius: 2px;
+  margin: 16px 0;
+  background-color: var(--color-base-blue);
+}
+
+
+
+
+.episodeCard {
+  background-color: var(--color-base-white);
+  box-shadow:
+              0 1px 2px rgba(16, 66, 133, .1),
+              0 2px 4px rgba(16, 66, 133, .1),
+              0 4px 8px rgba(16, 66, 133, .1);
+
+  display: flex;
+  border: 1px solid var(--color-accent-purple);
+  border-radius: 4px;
+  align-items: center;
+  padding: 4px;
+  margin: 2px -5px;
+  z-index: 1;
+  background-color: white;
+}
+
+/* CARD SKEWS */
+.episodeCardWrapper:nth-child(even) {
+  transform: skewX(1deg) skewY(.5deg);
+}
+
+.episodeCardWrapper > .episodeCard {
+  transform: skewX(-1deg) skewY(-1deg);
+}
+
+.episodeCardWrapper:nth-child(odd) {
+  transform: skewX(-1deg) skewY(-.5deg);
+}
+
+.episodeCard:nth-of-type(odd) {
+  transform: skewX(1deg) skewY(.5deg);
+}
