@@ -1,4 +1,4 @@
-.episodePage {
+.episodePageCard {
   padding: 16px;
   margin: 16px 0;
   border-radius: 4px;
@@ -7,4 +7,30 @@
               0 2px 4px rgba(16, 66, 133, .1),
               0 4px 8px rgba(16, 66, 133, .1),
               0 8px 16px rgba(16, 66, 133, .1);
+}
+
+.episodeTitle {
+  font-weight: 600;
+}
+
+.episodePlayer {
+  padding: 8px 16px 24px 16px;
+  border-radius: 4px;
+  background-color: rgba(16, 66, 133, .2 );
+}
+
+.episodeDetails {
+  line-height: 1.25em;
+}
+
+.episodeDetails a {
+  text-decoration: underline;
+}
+
+.episodeDetails a:hover {
+  color: var(--color-accent-purple)
+}
+
+.episodeDetails p {
+  margin: 8px 0;
 }

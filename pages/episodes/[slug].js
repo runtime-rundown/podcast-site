@@ -1,7 +1,9 @@
 import styles from '../../styles/EpisodePage.module.css';
 import Hero from '../../components/Hero';
+import Comments from '../../components/Comments';
+import LineBreak from '../../components/LineBreak';
 import { FEED, getFeed } from '../../feeds/rss';
-import Script from 'next/script';
+import AudioCard from 'audiocard';
 
 const processTitle = title => {
   return title.toLowerCase().replaceAll(' ', '-');
@@ -13,16 +15,24 @@ const EpisodePage = ({
   enclosure: { url: src },
   ...episodeDetails
 }) => {
-  console.log(episodeDetails);
   return (
     <>
       <Hero isShort />
-      <div className={styles.episodePage}>
-        <h3>{episodeDetails.title}</h3>
-        <audio controls>
-          <source src={src} type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
+      <div className={styles.episodePlayer}>
+        <AudioCard
+          source={src}
+          title={episodeDetails.title}
+          skipBackSeconds={15}
+          skipForwardSeconds={15}
+          color="var(--color-base-blue)"
+          background="transparent"
+          progressBarBackground="var(--color-base-white)"
+          progressBarCompleteBackground="var(--color-base-blue)"
+        />
+      </div>
+      <div className={styles.episodePageCard}>
+        <h3 className={styles.episodeTitle}>{episodeDetails.title}</h3>
+        <LineBreak content="Episode Details" />
         <div
           className={styles.episodeDetails}
           dangerouslySetInnerHTML={{
@@ -33,15 +43,10 @@ const EpisodePage = ({
           }}
         />
       </div>
-      <Script
-        src="https://utteranc.es/client.js"
-        repo="Cooperbuilt/runtime-rundown"
-        issue-term="title"
-        label="suggestion"
-        theme="github-light"
-        crossorigin="anonymous"
-        async
-      />
+      <div className={styles.episodePageCard}>
+        <LineBreak content="Comment On This Episode" />
+        <Comments />
+      </div>
     </>
   );
 };
