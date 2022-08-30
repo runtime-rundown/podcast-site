@@ -49,9 +49,9 @@ const EpisodeCard = ({ href, title, isoDate, contentSnippet, ...rest }) => {
             </div>
             <div>
               <h3 className={styles.episodeTitle}>{title}</h3>
-              <div className={styles.episodeSnippet}>
+              <p className={styles.episodeSnippet}>
                 {truncate(contentSnippet, 100)}
-              </div>
+              </p>
             </div>
           </div>
         </a>
