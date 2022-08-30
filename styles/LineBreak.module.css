@@ -1,0 +1,36 @@
+.lineBreak {
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: black;
+  height: 1.5em;
+  margin: 16px 0;
+}
+
+.lineBreak:before {
+  content: "";
+  background: linear-gradient(to right, var(--color-base-blue), var(--color-base-blue), transparent);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+}
+
+.lineBreak:after {
+  content: attr(data-content);
+  position: relative;
+  display: inline-block;
+  color: black;
+  padding-right: 0.5em;
+  line-height: 1em;
+  color: var(--color-base-blue);
+  font-size: .75em;
+  background-color: #fcfcfa;
+  text-transform: uppercase;
+  font-weight: 800;
+  border: 2px solid var(--color-base-blue);
+  border-left: none;
+  padding: 4px;
+}
