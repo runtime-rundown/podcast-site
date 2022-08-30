@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "audiocard": "^1.0.0",
     "date-fns": "^2.29.1",
     "next": "12.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "rss-parser": "^3.12.0"
+    "rss-parser": "^3.12.0",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "eslint": "8.21.0",
