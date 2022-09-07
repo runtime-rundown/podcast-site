@@ -1,7 +1,7 @@
 import styles from '../../styles/EpisodePage.module.css';
-import Hero from '../../components/Hero';
 import Comments from '../../components/Comments';
 import LineBreak from '../../components/LineBreak';
+import LogoBanner from '../../components/LogoBanner';
 import { FEED, getFeed } from '../../feeds/rss';
 import AudioCard from 'audiocard';
 
@@ -17,31 +17,27 @@ const EpisodePage = ({
 }) => {
   return (
     <>
-      <Hero isShort />
-      <div className={styles.episodePlayer}>
-        <AudioCard
-          source={src}
-          title={episodeDetails.title}
-          skipBackSeconds={15}
-          skipForwardSeconds={15}
-          color="var(--color-base-blue)"
-          background="transparent"
-          progressBarBackground="var(--color-base-white)"
-          progressBarCompleteBackground="var(--color-base-blue)"
-        />
-      </div>
-      <div className={styles.episodePageCard}>
-        <h3 className={styles.episodeTitle}>{episodeDetails.title}</h3>
-        <LineBreak content="Episode Details" />
-        <div
-          className={styles.episodeDetails}
-          dangerouslySetInnerHTML={{
-            __html: content.replace(
-              /href/g,
-              "target='_blank' rel='noreferrer' href",
-            ),
-          }}
-        />
+      <LogoBanner />
+      <div className={styles.episodeDetailsWrapper}>
+        <div className={styles.titleWrapper}>
+          <h3 className={styles.episodeTitle}>{episodeDetails.title}</h3>
+          <audio controls>
+            <source src={src} type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <div className={styles.episodePageCard}>
+          <LineBreak content="Episode Details" />
+          <div
+            className={styles.episodeDetails}
+            dangerouslySetInnerHTML={{
+              __html: content.replace(
+                /href/g,
+                "target='_blank' rel='noreferrer' href",
+              ),
+            }}
+          />
+        </div>
       </div>
       <div className={styles.episodePageCard}>
         <LineBreak content="Comment On This Episode" />

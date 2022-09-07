@@ -4,19 +4,37 @@
   border-radius: 4px;
   background-color: var(--color-base-white);
   box-shadow:
+              0 1px 2px rgba(16, 66, 133, .1),
               0 2px 4px rgba(16, 66, 133, .1),
-              0 4px 8px rgba(16, 66, 133, .1),
-              0 8px 16px rgba(16, 66, 133, .1);
+              0 4px 8px rgba(16, 66, 133, .1);
 }
 
 .episodeTitle {
   font-weight: 600;
 }
 
+.titleWrapper {
+  display: flex;
+  gap: 12px;
+  color: var(--color-base-blue);
+  padding: 16px;
+  flex-direction: column;
+  background-color: var(--color-base-white);
+  box-shadow:
+              0 1px 2px rgba(16, 66, 133, .1),
+              0 2px 4px rgba(16, 66, 133, .1),
+              0 4px 8px rgba(16, 66, 133, .1);
+}
+
 .episodePlayer {
+  text-align: center;
   padding: 8px 16px 24px 16px;
   border-radius: 4px;
   background-color: rgba(16, 66, 133, .2 );
+  box-shadow:
+              0 1px 2px rgba(16, 66, 133, .1),
+              0 2px 4px rgba(16, 66, 133, .1),
+              0 4px 8px rgba(16, 66, 133, .1);
 }
 
 .episodeDetails {
@@ -33,4 +51,29 @@
 
 .episodeDetails p {
   margin: 8px 0;
+}
+
+@media (min-width: 675px) {
+  .titleWrapper {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (min-width: 900px) {
+  .titleWrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .episodeDetailsWrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 16px;
+  }
+
+  .episodePageCard {
+    margin: 0;
+  }
 }
