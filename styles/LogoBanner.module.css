@@ -1,0 +1,47 @@
+.logoBanner {
+  min-height: 150px;
+  background-color: var(--color-base-blue);
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0;
+  cursor: pointer;
+}
+
+.titleWrapper {
+  margin-left: 16px
+}
+
+.logoTitle {
+  font-weight: 800;
+  color: var(--color-base-white);
+}
+
+.subtitle {
+  color: var(--color-base-teal);
+}
+
+.logoWrapper {
+    position: relative;
+    top: 25px;
+    overflow: hidden;
+}
+
+
+@media (min-width: 675px) {
+  .logoWrapper {
+    right: -25px;
+  }
+
+}
+
+@media (min-width: 850px) {
+  .logoTitle {
+
+  }
+}
+
+@media (min-width: 1200px) {
+
+}
