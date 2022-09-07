@@ -8,15 +8,13 @@ const Hero = ({ isShort = false }) => {
     <div className={styles.hero}>
       <div className={styles.leftRail}>
         <div className={styles.logo}>
-          <Link href="/">
-            <Image
-              className={styles.HeroLogo}
-              src={RuntimeLogo}
-              alt="Runtime Rundown Logo: Depicting a laptop with the words Runtime Rundown"
-              height={400}
-              width={400}
-            />
-          </Link>
+          <Image
+            className={styles.HeroLogo}
+            src={RuntimeLogo}
+            alt="Runtime Rundown Logo: Depicting a laptop with the words Runtime Rundown"
+            height={400}
+            width={400}
+          />
         </div>
       </div>
 
