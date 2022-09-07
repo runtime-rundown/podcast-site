@@ -11,18 +11,16 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  gap: 8px;
 }
 
 .HeaderLink {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 8px;
+
 }
 
-.HeaderLink:first-child, .HeaderLink:last-child {
-  margin: 0;
-}
 
 .HeaderLink:hover {
   animation-name: wiggle;
