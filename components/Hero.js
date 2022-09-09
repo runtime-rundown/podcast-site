@@ -63,7 +63,7 @@ const Hero = ({ isShort = false }) => {
         </div>
         <hr className={styles.lineBreak} data-content="Get Involved" />
         <div className={styles.linkWrapper}>
-          <Link href="/submit">
+          <Link href="/suggestions">
             <a className={styles.link}>Make a Suggestion</a>
           </Link>
         </div>
