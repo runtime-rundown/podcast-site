@@ -1,7 +1,8 @@
 import styles from '../../styles/EpisodePage.module.css';
 import Comments from '../../components/Comments';
 import LineBreak from '../../components/LineBreak';
-import Hero from '../../components/Hero';
+import LogoBanner from '../../components/LogoBanner';
+import Hero from '../..components/Hero';
 import { FEED, getFeed } from '../../feeds/rss';
 
 const processTitle = title => {
@@ -16,7 +17,7 @@ const EpisodePage = ({
 }) => {
   return (
     <>
-      <Hero isShort />
+      Hero
       <div className={styles.episodeDetailsWrapper}>
         <div className={styles.titleWrapper}>
           <h3 className={styles.episodeTitle}>{episodeDetails.title}</h3>
@@ -57,7 +58,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   };
 }
 
@@ -73,5 +74,6 @@ export async function getStaticProps(context) {
   return {
     // Passed to the page component as props
     props: { ...episode },
+    revalidate: 604800, // this is a week
   };
 }
