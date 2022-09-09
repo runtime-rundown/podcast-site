@@ -1,9 +1,8 @@
 import styles from '../../styles/EpisodePage.module.css';
 import Comments from '../../components/Comments';
 import LineBreak from '../../components/LineBreak';
-import LogoBanner from '../../components/LogoBanner';
+import Hero from '../../components/Hero';
 import { FEED, getFeed } from '../../feeds/rss';
-import AudioCard from 'audiocard';
 
 const processTitle = title => {
   return title.toLowerCase().replaceAll(' ', '-');
@@ -17,7 +16,7 @@ const EpisodePage = ({
 }) => {
   return (
     <>
-      <LogoBanner />
+      <Hero isShort />
       <div className={styles.episodeDetailsWrapper}>
         <div className={styles.titleWrapper}>
           <h3 className={styles.episodeTitle}>{episodeDetails.title}</h3>
