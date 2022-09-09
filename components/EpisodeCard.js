@@ -35,7 +35,6 @@ const colors = {
 };
 
 const EpisodeCard = ({ href, title, isoDate, contentSnippet, ...rest }) => {
-  console.log(rest);
   return (
     <div
       style={{ backgroundColor: `var(${getBackgroundColor()})` }}
