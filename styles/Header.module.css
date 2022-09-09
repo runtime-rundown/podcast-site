@@ -3,22 +3,27 @@
   border-bottom: 2px solid var(--color-accent-blue);
   background-color: var(--color-base-white);
   color: var(--color-base-blue);
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding: 6px 32px 6px 16px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .HeaderLinks {
   display: flex;
-  justify-content: space-between;
   width: 100%;
-  gap: 8px;
+  gap: 12px;
+  justify-content: flex-end;
 }
 
 .HeaderLink {
   display: flex;
-  justify-content: center;
   align-items: center;
+}
 
+.HeaderHome {
+  height: 30px;
+  width: 30px;
+  fill: var(--color-base-blue)
 }
 
 
