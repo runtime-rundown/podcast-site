@@ -54,8 +54,12 @@ table {
 
 
 html {
-  --base-x-padding: 0 16px;
+  font-size: 16px;
 
+  --base-x-padding: 0 16px;
+  --base-box-shadow: 0 .5px 1px rgba(16, 66, 133, .1),
+                     0 1px 2px rgba(16, 66, 133, .1),
+                     0 2px 4px rgba(16, 66, 133, .1);
   --color-accent-pink: #f7b4a7;
   --color-accent-purple: #170A91;
   --color-accent-teal: #0A8C91;
@@ -63,7 +67,6 @@ html {
   --color-base-blue: #104285;
   --color-base-teal: #93DDDE;
   --color-base-white: #fff;
-  font-size: 16px;
 
 }
 
