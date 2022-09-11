@@ -23,6 +23,7 @@
   z-index: 1;
   background-color: white;
   transform: skewX(1deg) skewY(.5deg);
+  min-height: 125px;
 }
 
 .episodeCardInternals {
