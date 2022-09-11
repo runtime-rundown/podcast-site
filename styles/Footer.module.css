@@ -1,3 +1,7 @@
+/*
+TODO: Add a 1200px content wrapper
+*/
+
 .footer {
   border-top: 2px solid var(--color-accent-blue);
   background-color: var(--color-base-white);

@@ -8,6 +8,10 @@
   justify-content: space-between;
 }
 
+/*
+TODO: Add a 1200px content wrapper
+*/
+
 .HeaderLinks {
   display: flex;
   width: 100%;
