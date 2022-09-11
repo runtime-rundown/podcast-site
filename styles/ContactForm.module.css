@@ -1,0 +1,42 @@
+.contactForm {
+  display: grid;
+  gap: 8px;
+}
+
+.contactForm input {
+  padding: 8px 16px;
+  background-color: var(--color-base-white);
+  border: 2px solid var(--color-base-blue);
+  color: var(--color-base-blue);
+}
+
+.contactForm textarea{
+  height: 15vh;
+  padding: 8px 16px;
+  background-color: var(--color-base-white);
+  border: 2px solid var(--color-base-blue);
+  color: var(--color-base-blue);
+}
+
+.contactFormButtonText {
+  border: 1px solid var(--color-accent-purple);
+  padding: 4px 8px;
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+  border-radius: 4px;
+  margin: 2px -5px;
+  z-index: 2;
+  background-color: var(--color-base-white);
+  transform: skewX(.5deg) skewY(.5deg);
+  color: var(--color-base-blue);
+  cursor: pointer;
+}
+
+.contactFormButtonWrapper {
+  border: 1px solid var(--color-accent-purple);
+  margin: 8px 0;
+  border-radius: 4px;
+  background-color: var(--color-base-blue);
+}
+
