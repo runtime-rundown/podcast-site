@@ -13,8 +13,8 @@ const Suggestions = () => {
       <div className={styles.suggestionsCard}>
         <h2>Get Involved in the Show</h2>
         <p>
-          We would love to hear from you! There's a few ways to get involved,
-          choose the one that makes the most sense.{' '}
+          We would love to hear from you! There&apos;s a few ways to get
+          involved, choose the one that makes the most sense.{' '}
         </p>
       </div>
       <div className={styles.suggestionsWrapper}>
