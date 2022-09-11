@@ -135,31 +135,6 @@ audio::-webkit-media-controls-panel {
   background-color: var(--color-base-blue);
 }
 
-/* Scrollbar Styles */
-
-/* Works on Firefox */
-body {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-accent-pink) var(--color-base-blue);
-}
-
-/* Works on Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 12px;
-}
-
-*::-webkit-scrollbar-track {
-  background: var(--color-base-blue);
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: var(--color-accent-pink);
-  border-radius: 20px;
-  border: 3px solid var(--color-base-blue);
-}
-
-
-
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
