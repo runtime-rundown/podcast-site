@@ -2,17 +2,32 @@ import styles from '../styles/SuggestionsPage.module.css';
 import Comments from '../components/Comments';
 import LineBreak from '../components/LineBreak';
 import LogoBanner from '../components/LogoBanner';
+import ContactForm from '../components/ContactForm';
 
 const Suggestions = () => {
   return (
-    <div className={styles.suggestions}>
-      <LogoBanner />
-      <h2>Get Involved in the Show</h2>
-      <p>
-        We have a few ways to get involved. First up is the message board below.
-        You can use this to give us a suggestion, shout out the show, etc.{' '}
-      </p>
-    </div>
+    <>
+      <div className={styles.suggestionsCard}>
+        <LogoBanner />
+      </div>
+      <div className={styles.suggestionsCard}>
+        <h2>Get Involved in the Show</h2>
+        <p>
+          We would love to hear from you! There's a few ways to get involved,
+          choose the one that makes the most sense.{' '}
+        </p>
+      </div>
+      <div className={styles.suggestionsWrapper}>
+        <div className={styles.suggestionsCard}>
+          <LineBreak content="Send us an email" />
+          <ContactForm />
+        </div>
+        <div className={styles.suggestionsCard}>
+          <LineBreak content="Make a Quick Comment" />
+          <Comments />
+        </div>
+      </div>
+    </>
   );
 };
 
