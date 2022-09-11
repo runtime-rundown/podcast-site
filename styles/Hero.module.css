@@ -3,10 +3,7 @@
   margin: 16px 0;
   border-radius: 4px;
   background-color: var(--color-base-white);
-  box-shadow:
-              0 2px 4px rgba(16, 66, 133, .1),
-              0 4px 8px rgba(16, 66, 133, .1),
-              0 8px 16px rgba(16, 66, 133, .1);
+  box-shadow: var(--base-box-shadow);
 }
 
 .link {
