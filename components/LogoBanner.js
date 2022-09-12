@@ -9,7 +9,8 @@ const LogoBanner = () => {
         <div className={styles.titleWrapper}>
           <h1 className={styles.logoTitle}>Runtime Rundown</h1>
           <p className={styles.subtitle}>
-            Breaking Down Interesting Web Dev Blog Posts And Videos
+            A Weekly Podcast Breaking Down Interesting Web Dev Blog Posts And
+            Videos
           </p>
         </div>
         <div className={styles.logoWrapper}>
