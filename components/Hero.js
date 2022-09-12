@@ -31,8 +31,7 @@ const Hero = ({ isShort = false }) => {
                   <div>
                     <h3>Joe Boyle</h3>
                     <p>
-                      Frontend Engineer at Wayfair, Learning Japanese, Other
-                      stuff
+                      Frontend Platform Engineer at Wayfair, former animator
                     </p>
                   </div>
                 </div>
