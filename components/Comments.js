@@ -7,7 +7,7 @@ const Comments = () => {
         }
         const scriptElement = document.createElement('script');
         scriptElement.setAttribute('src', 'https://utteranc.es/client.js');
-        scriptElement.setAttribute('repo', 'Cooperbuilt/runtime-rundown');
+        scriptElement.setAttribute('repo', 'runtime-rundown/podcast-site');
         scriptElement.setAttribute('issue-term', 'pathname');
         scriptElement.setAttribute('theme', 'boxy-light');
         scriptElement.setAttribute('crossorigin', 'anonymous');
