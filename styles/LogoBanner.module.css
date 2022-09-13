@@ -22,9 +22,19 @@
 }
 
 .logoWrapper {
-    position: relative;
-    top: 25px;
-    overflow: hidden;
+  position: relative;
+  top: 25px;
+  overflow: hidden;
+}
+
+.laptopLogo {
+  height: 8em;
+}
+
+@media (min-width: 400px) {
+  .laptopLogo {
+    height: 12em;
+  }
 }
 
 

@@ -1,5 +1,7 @@
+import styles from '../styles/LogoBanner.module.css';
+
 const LaptopLogo = props => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2250 2250" {...props}>
+  <svg className={styles.laptopLogo} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2250 2250" {...props}>
     <path
       fill="#f0abc1"
       d="M2138 1727v41c0 11-8 22-23 31l-748 432c-15 9-36 13-57 13-16 0-32-3-42-9L70 1543c-10-6-15-13-16-21v-44c1 6 6 11 14 16l1203 694c10 6 25 9 40 9 20 0 40-5 55-13l751-434c12-6 19-15 21-23Zm10-1025L950 11c-6-4-13-6-19-6-5 0-9 1-13 3l-25 13c8-2 17 0 26 5l1198 691c27 16 48 57 48 93v863c0 20-7 34-17 39h1l30-15h1c11-7 16-21 16-40V795c0-36-21-78-48-93Zm0 0"
