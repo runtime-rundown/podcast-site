@@ -2,10 +2,12 @@
   min-height: 150px;
   background-color: var(--color-base-blue);
   overflow: hidden;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   cursor: pointer;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 8px;
+  justify-items: center;
+  align-items: center;
 }
 
 .titleWrapper {
@@ -23,7 +25,8 @@
 
 .logoWrapper {
   position: relative;
-  top: 25px;
+  top: 40px;
+  left: 20px;
   overflow: hidden;
 }
 
@@ -38,14 +41,8 @@
 }
 
 
-/* @media (min-width: 700px) {
-
+@media (min-width: 700px) {
+  .laptopLogo {
+    height: 14em;
+  }
 }
-
-@media (min-width: 850px) {
-
-}
-
-@media (min-width: 1200px) {
-
-} */
