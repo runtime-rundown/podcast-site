@@ -93,13 +93,12 @@ h2, h3 {
 
 
 
-/* ensuring a 100% height page */
 html,
 body,
 body > div:first-child,
 div#__next,
 div#__next > div {
-  height: 100%;
+  background-color: #ffffff;
 }
 
 /* ensuring a flexible layout  height */
