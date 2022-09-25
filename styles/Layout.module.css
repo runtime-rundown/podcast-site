@@ -3,6 +3,8 @@
   color: var(--color-base-blue);
   flex-grow: 1;
   overflow: auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .code {

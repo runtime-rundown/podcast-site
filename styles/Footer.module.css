@@ -6,7 +6,10 @@ TODO: Add a 1200px content wrapper
   border-top: 2px solid var(--color-accent-blue);
   background-color: var(--color-base-white);
   color: var(--color-base-blue);
-  padding: var(--base-x-padding);
-  padding-top: 2px;
-  padding-bottom: 2px;
+}
+
+.footerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px
 }
