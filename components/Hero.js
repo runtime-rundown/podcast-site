@@ -31,7 +31,7 @@ const Hero = ({ isShort = false }) => {
                   <div>
                     <h3>Joe Boyle</h3>
                     <p>
-                      Frontend Platform Engineer at Wayfair, former animator
+                      Frontend Platform Engineer, former animator
                     </p>
                   </div>
                 </div>
@@ -64,6 +64,11 @@ const Hero = ({ isShort = false }) => {
         <div className={styles.linkWrapper}>
           <Link href="/suggestions">
             <a className={styles.link}>Make a Suggestion</a>
+          </Link>
+        </div>
+        <div className={styles.linkWrapper}>
+          <Link href="/questions">
+            <a className={styles.link}>Ask a Question</a>
           </Link>
         </div>
       </div>
