@@ -66,6 +66,11 @@ const Hero = ({ isShort = false }) => {
             <a className={styles.link}>Make a Suggestion</a>
           </Link>
         </div>
+        <div className={styles.linkWrapper}>
+          <Link href="/questions">
+            <a className={styles.link}>Ask a Question</a>
+          </Link>
+        </div>
       </div>
     </div>
   );
