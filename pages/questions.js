@@ -16,7 +16,11 @@ const Questions = () => {
       <div className={styles.suggestionsWrapper}>
         <div className={styles.suggestionsCard}>
           <LineBreak content="Ask us a Question" />
-          <ContactForm formType={formTypes.question} thanksMessage="Thank you for your question!" messageLabel="Your Question:" />
+          <ContactForm
+            formType={formTypes.question}
+            thanksMessage="Thank you for your question!"
+            messageLabel="Your Question (include a name, we won't read your email address on the show):"
+          />
         </div>
       </div>
     </>
