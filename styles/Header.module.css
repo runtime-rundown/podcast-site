@@ -4,13 +4,15 @@
   background-color: var(--color-base-white);
   color: var(--color-base-blue);
   padding: 6px 16px;
-  display: flex;
-  justify-content: space-between;
+
 }
 
-/*
-TODO: Add a 1200px content wrapper
-*/
+.HeaderContainer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
 .HeaderLinks {
   display: flex;
@@ -57,4 +59,11 @@ TODO: Add a 1200px content wrapper
   50% {transform: rotate(6deg);}
   75% {transform: rotate(-2deg);}
   100% {transform: rotate(0deg);}
+}
+
+
+@media (min-width: 1200px) {
+  .HeaderContainer {
+    padding: 0 14px;
+   }
 }
