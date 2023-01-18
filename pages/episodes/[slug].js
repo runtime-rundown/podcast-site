@@ -70,6 +70,11 @@ export async function getStaticProps(context) {
   const episode = items.find(item => {
     return processTitle(item.title) === slug;
   });
+
+  if (!episode) {
+    return { notFound: true }
+  };
+
   return {
     // Passed to the page component as props
     props: { ...episode },
