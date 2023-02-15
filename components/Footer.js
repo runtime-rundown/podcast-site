@@ -6,7 +6,7 @@ const Footer = () => {
       <div className={styles.footerContainer}>
         <p>
           Runtime Rundown™ and this website are a &quot;Joe and Evan&quot;
-          production, &copy; 2022{' '}
+          production, &copy; {new Date().getFullYear()}
         </p>
       </div>
     </footer>
