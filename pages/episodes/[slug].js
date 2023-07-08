@@ -14,36 +14,34 @@ const EpisodePage = ({
   enclosure: { url: src },
   ...episodeDetails
 }) => {
-  return (
-    <>
-      <Hero isShort />
-      <div className={styles.episodeDetailsWrapper}>
-        <div className={styles.titleWrapper}>
-          <h3 className={styles.episodeTitle}>{episodeDetails.title}</h3>
-          <audio controls>
-            <source src={src} type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-        </div>
-        <div className={styles.episodePageCard}>
-          <LineBreak content="Episode Details" />
-          <div
-            className={styles.episodeDetails}
-            dangerouslySetInnerHTML={{
-              __html: content.replace(
-                /href/g,
-                "target='_blank' rel='noreferrer' href",
-              ),
-            }}
-          />
-        </div>
+  return <>
+    <Hero isShort />
+    <div className={styles.episodeDetailsWrapper}>
+      <div className={styles.titleWrapper}>
+        <h3 className={styles.episodeTitle}>{episodeDetails.title}</h3>
+        <audio controls>
+          <source src={src} type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
       </div>
       <div className={styles.episodePageCard}>
-        <LineBreak content="Comment On This Episode" />
-        <Comments />
+        <LineBreak content="Episode Details" />
+        <div
+          className={styles.episodeDetails}
+          dangerouslySetInnerHTML={{
+            __html: content.replace(
+              /href/g,
+              "target='_blank' rel='noreferrer' href",
+            ),
+          }}
+        />
       </div>
-    </>
-  );
+    </div>
+    <div className={styles.episodePageCard}>
+      <LineBreak content="Comment On This Episode" />
+      <Comments />
+    </div>
+  </>;
 };
 
 export default EpisodePage;

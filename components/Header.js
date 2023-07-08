@@ -10,24 +10,22 @@ const Header = () => {
   return (
     <nav className={styles.Header}>
       <div className={styles.HeaderContainer}>
-        <Link href="/">
-          <a className={styles.HeaderLink}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-              className={styles.HeaderHome}
-            >
-              <circle cx="256" cy="256" r="256" fill="#104285" />
-              <path
-                fill="#93DDDE"
-                d="m256 72.272-132.448 94.736v41.04L256 113.312l132.448 94.736v-41.04z"
-              />
-              <path
-                fill="#93DDDE"
-                d="M145.728 387.728v-168.16L256 140.16l110.272 79.408v168.16z"
-              />
-            </svg>
-          </a>
+        <Link href="/" className={styles.HeaderLink}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+            className={styles.HeaderHome}
+          >
+            <circle cx="256" cy="256" r="256" fill="#104285" />
+            <path
+              fill="#93DDDE"
+              d="m256 72.272-132.448 94.736v41.04L256 113.312l132.448 94.736v-41.04z"
+            />
+            <path
+              fill="#93DDDE"
+              d="M145.728 387.728v-168.16L256 140.16l110.272 79.408v168.16z"
+            />
+          </svg>
         </Link>
 
         <ul className={styles.HeaderLinks}>
