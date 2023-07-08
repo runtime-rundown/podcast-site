@@ -1,7 +1,9 @@
 import '../styles/globals.css';
 import Layout from '../components/Layout';
 
-// TODO: Metadata
+export const metadata = {
+  title: 'Runtime Rundown',
+};
 
 function RootLayout({ children }) {
   return (
