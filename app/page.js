@@ -1,11 +1,11 @@
+import { FEED, getFeed } from '../feeds/rss';
 import Hero from '../components/Hero';
 import EpisodeCard from '../components/EpisodeCard';
 import styles from '../styles/Index.module.css';
-import { FEED, getFeed } from '../feeds/rss';
 
 export const revalidate = 60;
 
-export default async function Page() {
+export default async function Home() {
   const { items } = await getFeed(FEED.url);
 
   return (
