@@ -4,7 +4,7 @@
   margin: 16px 0;
   background-color: var(--color-base-blue);
   padding: 2px;
-  transform: skewX(-1deg) skewY(-.5deg);
+  transform: skewX(-1deg) skewY(-0.5deg);
 }
 
 .episodeCard {
@@ -18,7 +18,7 @@
   margin: 2px -5px;
   z-index: 1;
   background-color: white;
-  transform: skewX(1deg) skewY(.5deg);
+  transform: skewX(1deg) skewY(0.5deg);
   min-height: 125px;
 }
 
@@ -42,7 +42,6 @@
   padding: 8px;
 }
 
-
 @media (min-width: 675px) {
   .episodeDate {
     width: 25%;
@@ -50,9 +49,7 @@
 }
 
 @media (min-width: 850px) {
-
 }
 
 @media (min-width: 1200px) {
-
 }

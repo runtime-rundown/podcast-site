@@ -5,12 +5,12 @@ import styles from '../styles/ContactForm.module.css';
 export const formTypes = {
   contact: 'contact',
   question: 'question',
-}
+};
 
 function ContactForm({
   thanksMessage = 'Thank you for getting involved!',
   messageLabel = 'Your Message:',
-  formType = formTypes.contact
+  formType = formTypes.contact,
 }) {
   const [state, handleSubmit] = useForm('xkneoezr');
   if (state.succeeded) {

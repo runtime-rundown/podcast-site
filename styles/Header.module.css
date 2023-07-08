@@ -4,7 +4,6 @@
   background-color: var(--color-base-white);
   color: var(--color-base-blue);
   padding: 6px 16px;
-
 }
 
 .HeaderContainer {
@@ -29,9 +28,8 @@
 .HeaderHome {
   height: 30px;
   width: 30px;
-  fill: var(--color-base-blue)
+  fill: var(--color-base-blue);
 }
-
 
 .HeaderLink:hover {
   animation-name: wiggle;
@@ -44,26 +42,44 @@
   -webkit-animation-timing-function: ease-in-out;
 }
 
-
 @-webkit-keyframes wiggle {
-  0% {-webkit-transform: rotate(4deg);}
-  25% {-webkit-transform: rotate(-4deg);}
-  50% {-webkit-transform: rotate(6deg);}
-  75% {-webkit-transform: rotate(-2deg);}
-  100% {-webkit-transform: rotate(0deg);}
+  0% {
+    -webkit-transform: rotate(4deg);
+  }
+  25% {
+    -webkit-transform: rotate(-4deg);
+  }
+  50% {
+    -webkit-transform: rotate(6deg);
+  }
+  75% {
+    -webkit-transform: rotate(-2deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+  }
 }
 
 @keyframes wiggle {
-  0% {transform: rotate(4deg);}
-  25% {transform: rotate(-4deg);}
-  50% {transform: rotate(6deg);}
-  75% {transform: rotate(-2deg);}
-  100% {transform: rotate(0deg);}
+  0% {
+    transform: rotate(4deg);
+  }
+  25% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(6deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
-
 
 @media (min-width: 1200px) {
   .HeaderContainer {
     padding: 0 14px;
-   }
+  }
 }

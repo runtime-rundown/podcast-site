@@ -24,7 +24,7 @@
   text-align: center;
   padding: 8px 16px 24px 16px;
   border-radius: 4px;
-  background-color: rgba(16, 66, 133, .2 );
+  background-color: rgba(16, 66, 133, 0.2);
   box-shadow: var(--base-box-shadow);
 }
 
@@ -37,7 +37,7 @@
 }
 
 .episodeDetails a:hover {
-  color: var(--color-accent-purple)
+  color: var(--color-accent-purple);
 }
 
 .episodeDetails p {

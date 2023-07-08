@@ -72,8 +72,8 @@ export async function getStaticProps(context) {
   });
 
   if (!episode) {
-    return { notFound: true }
-  };
+    return { notFound: true };
+  }
 
   return {
     // Passed to the page component as props

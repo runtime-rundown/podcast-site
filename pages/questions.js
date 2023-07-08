@@ -11,7 +11,10 @@ const Questions = () => {
       </div>
       <div className={styles.suggestionsCard}>
         <h2>Ask a Question</h2>
-        <p>Have a question for us? Post it here and we might answer it on a future show!</p>
+        <p>
+          Have a question for us? Post it here and we might answer it on a
+          future show!
+        </p>
       </div>
       <div className={styles.suggestionsWrapper}>
         <div className={styles.suggestionsCard}>

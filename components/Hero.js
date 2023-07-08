@@ -30,9 +30,7 @@ const Hero = ({ isShort = false }) => {
                   />
                   <div>
                     <h3>Joe Boyle</h3>
-                    <p>
-                      Frontend Platform Engineer, former animator
-                    </p>
+                    <p>Frontend Platform Engineer, former animator</p>
                   </div>
                 </div>
               </a>

@@ -10,7 +10,7 @@
   color: var(--color-base-blue);
 }
 
-.contactForm textarea{
+.contactForm textarea {
   height: 15vh;
   padding: 8px 16px;
   background-color: var(--color-base-white);
@@ -28,10 +28,10 @@
   margin: 2px -5px;
   z-index: 2;
   background-color: var(--color-base-white);
-  transform: skewX(.5deg) skewY(.5deg);
+  transform: skewX(0.5deg) skewY(0.5deg);
   color: var(--color-base-blue);
   cursor: pointer;
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
 
 .contactFormButtonText:hover {
@@ -44,4 +44,3 @@
   border-radius: 4px;
   background-color: var(--color-base-blue);
 }
-
