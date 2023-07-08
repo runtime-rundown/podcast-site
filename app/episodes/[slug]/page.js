@@ -68,9 +68,8 @@ export default EpisodePage;
 // produces a page for every episode
 export async function generateStaticParams() {
   const { items } = await getFeed(FEED.url);
-  const paths = items.map(feedItem => ({
-    params: { slug: `${processTitle(feedItem.title)}` },
-  }));
 
-  return paths;
+  return items.map(({ title }) => ({
+    slug: `${processTitle(title)}`,
+  }));
 }
