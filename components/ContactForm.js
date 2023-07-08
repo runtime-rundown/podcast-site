@@ -2,11 +2,7 @@
 import React from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import styles from '../styles/ContactForm.module.css';
-
-export const formTypes = {
-  contact: 'contact',
-  question: 'question',
-};
+import { formTypes } from './constants';
 
 function ContactForm({
   thanksMessage = 'Thank you for getting involved!',
