@@ -1,7 +1,8 @@
-import styles from '../styles/SuggestionsPage.module.css';
-import LineBreak from '../components/LineBreak';
-import LogoBanner from '../components/LogoBanner';
-import ContactForm, { formTypes } from '../components/ContactForm';
+'use client';
+import styles from '../../styles/SuggestionsPage.module.css';
+import LineBreak from '../../components/LineBreak';
+import LogoBanner from '../../components/LogoBanner';
+import ContactForm, { formTypes } from '../../components/ContactForm';
 
 const Questions = () => {
   return (

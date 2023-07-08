@@ -22,8 +22,8 @@ const Hero = ({ isShort = false }) => {
               >
                 <div className={styles.profileCard}>
                   <Image
-                    height="75"
-                    width="75"
+                    height={75}
+                    width={75}
                     src={JoesPicture}
                     alt="Joe Boyle"
                     className={styles.avatar}
@@ -43,8 +43,8 @@ const Hero = ({ isShort = false }) => {
               >
                 <div className={styles.profileCard}>
                   <Image
-                    height="75"
-                    width="75"
+                    height={75}
+                    width={75}
                     src={EvansPicture}
                     alt="Evan Cooper"
                     className={styles.avatar}

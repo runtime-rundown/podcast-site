@@ -1,8 +1,8 @@
-import styles from '../styles/SuggestionsPage.module.css';
-import Comments from '../components/Comments';
-import LineBreak from '../components/LineBreak';
-import LogoBanner from '../components/LogoBanner';
-import ContactForm from '../components/ContactForm';
+import styles from '../../styles/SuggestionsPage.module.css';
+import Comments from '../../components/Comments';
+import LineBreak from '../../components/LineBreak';
+import LogoBanner from '../../components/LogoBanner';
+import ContactForm from '../../components/ContactForm';
 
 const Suggestions = () => {
   return (

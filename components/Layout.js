@@ -5,15 +5,11 @@ import styles from '../styles/Layout.module.css';
 
 const Layout = ({ children }) => {
   return (
-    <>
-      <Head>
-        <title>Runtime Rundown</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div id="__next">
       <Header />
       <main className={styles.main}>{children}</main>
       <Footer />
-    </>
+    </div>
   );
 };
 
