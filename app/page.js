@@ -3,7 +3,11 @@ import Hero from '../components/Hero';
 import EpisodeCard from '../components/EpisodeCard';
 import styles from '../styles/Index.module.css';
 
-export default function Home({ feed, items }) {
+export const revalidate = 60;
+
+export default async function Home() {
+  const { items } = await getFeed(FEED.url);
+
   return (
     <>
       <Hero />
@@ -15,16 +19,4 @@ export default function Home({ feed, items }) {
       </div>
     </>
   );
-}
-
-export async function getStaticProps({ params }) {
-  const detailedFeed = await getFeed(FEED.url);
-
-  return {
-    props: {
-      feed: FEED,
-      items: detailedFeed.items,
-    },
-    revalidate: 1,
-  };
 }

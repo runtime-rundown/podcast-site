@@ -40,20 +40,21 @@ const EpisodeCard = ({ href, title, isoDate, contentSnippet, ...rest }) => {
       style={{ backgroundColor: `var(${getBackgroundColor()})` }}
       className={styles.episodeCardWrapper}
     >
-      <Link href={`/episodes/${processTitle(title)}`}>
-        <a className={styles.episodeCard}>
-          <div className={styles.episodeCardInternals}>
-            <div className={styles.episodeDate}>
-              {format(new Date(isoDate), 'PP')}
-            </div>
-            <div>
-              <h3 className={styles.episodeTitle}>{title}</h3>
-              <p className={styles.episodeSnippet}>
-                {truncate(contentSnippet, 100)}
-              </p>
-            </div>
+      <Link
+        href={`/episodes/${processTitle(title)}`}
+        className={styles.episodeCard}
+      >
+        <div className={styles.episodeCardInternals}>
+          <div className={styles.episodeDate}>
+            {format(new Date(isoDate), 'PP')}
           </div>
-        </a>
+          <div>
+            <h3 className={styles.episodeTitle}>{title}</h3>
+            <p className={styles.episodeSnippet}>
+              {truncate(contentSnippet, 100)}
+            </p>
+          </div>
+        </div>
       </Link>
     </div>
   );

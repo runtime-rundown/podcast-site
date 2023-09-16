@@ -1,19 +1,36 @@
-import styles from '../../styles/EpisodePage.module.css';
-import Comments from '../../components/Comments';
-import LineBreak from '../../components/LineBreak';
-import Hero from '../../components/Hero';
-import { FEED, getFeed } from '../../feeds/rss';
+import { notFound } from 'next/navigation';
+import styles from '../../../styles/EpisodePage.module.css';
+import Comments from '../../../components/Comments';
+import LineBreak from '../../../components/LineBreak';
+import Hero from '../../../components/Hero';
+import { FEED, getFeed } from '../../../feeds/rss';
+
+export const revalidate = 604800;
 
 const processTitle = title => {
   return title.toLowerCase().replaceAll(' ', '-');
 };
 
-const EpisodePage = ({
-  pubDate,
-  content,
-  enclosure: { url: src },
-  ...episodeDetails
-}) => {
+async function EpisodePage({ params: { slug } }) {
+  // With `revalidate` this is treated like getStaticProps
+  // https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration#incremental-static-regeneration-getstaticprops-with-revalidate
+  // https://nextjs.org/docs/app/building-your-application/data-fetching/revalidating#background-revalidation
+  const { items } = await getFeed(FEED.url);
+  const episode = items.find(item => {
+    return processTitle(item.title) === slug;
+  });
+
+  if (!episode) {
+    notFound();
+  }
+
+  const {
+    pubDate,
+    content,
+    enclosure: { url: src },
+    ...episodeDetails
+  } = episode;
+
   return (
     <>
       <Hero isShort />
@@ -44,40 +61,15 @@ const EpisodePage = ({
       </div>
     </>
   );
-};
+}
 
 export default EpisodePage;
 
 // produces a page for every episode
-export async function getStaticPaths() {
-  const detailedFeed = await getFeed(FEED.url);
-  const paths = detailedFeed.items.map(feedItem => ({
-    params: { slug: `${processTitle(feedItem.title)}` },
-  }));
-
-  return {
-    paths,
-    fallback: 'blocking',
-  };
-}
-
-// `getStaticPaths` requires using `getStaticProps`
-export async function getStaticProps(context) {
-  const {
-    params: { slug },
-  } = context;
+export async function generateStaticParams() {
   const { items } = await getFeed(FEED.url);
-  const episode = items.find(item => {
-    return processTitle(item.title) === slug;
-  });
 
-  if (!episode) {
-    return { notFound: true }
-  };
-
-  return {
-    // Passed to the page component as props
-    props: { ...episode },
-    revalidate: 604800,
-  };
+  return items.map(({ title }) => ({
+    slug: `${processTitle(title)}`,
+  }));
 }

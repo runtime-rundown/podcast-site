@@ -9,8 +9,13 @@
 }
 
 .lineBreak:before {
-  content: "";
-  background: linear-gradient(to right, var(--color-base-blue), var(--color-base-blue), transparent);
+  content: '';
+  background: linear-gradient(
+    to right,
+    var(--color-base-blue),
+    var(--color-base-blue),
+    transparent
+  );
   position: absolute;
   left: 0;
   top: 50%;
@@ -26,7 +31,7 @@
   padding-right: 0.5em;
   line-height: 1em;
   color: var(--color-base-blue);
-  font-size: .75em;
+  font-size: 0.75em;
   background-color: #fcfcfa;
   text-transform: uppercase;
   font-weight: 800;

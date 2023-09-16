@@ -22,17 +22,15 @@ const Hero = ({ isShort = false }) => {
               >
                 <div className={styles.profileCard}>
                   <Image
-                    height="75px"
-                    width="75px"
+                    height={75}
+                    width={75}
                     src={JoesPicture}
                     alt="Joe Boyle"
                     className={styles.avatar}
                   />
                   <div>
                     <h3>Joe Boyle</h3>
-                    <p>
-                      Frontend Platform Engineer, former animator
-                    </p>
+                    <p>Frontend Platform Engineer, former animator</p>
                   </div>
                 </div>
               </a>
@@ -45,8 +43,8 @@ const Hero = ({ isShort = false }) => {
               >
                 <div className={styles.profileCard}>
                   <Image
-                    height="75px"
-                    width="75px"
+                    height={75}
+                    width={75}
                     src={EvansPicture}
                     alt="Evan Cooper"
                     className={styles.avatar}
@@ -62,13 +60,13 @@ const Hero = ({ isShort = false }) => {
         </div>
         <hr className={styles.lineBreak} data-content="Get Involved" />
         <div className={styles.linkWrapper}>
-          <Link href="/suggestions">
-            <a className={styles.link}>Make a Suggestion</a>
+          <Link href="/suggestions" className={styles.link}>
+            Make a Suggestion
           </Link>
         </div>
         <div className={styles.linkWrapper}>
-          <Link href="/questions">
-            <a className={styles.link}>Ask a Question</a>
+          <Link href="/questions" className={styles.link}>
+            Ask a Question
           </Link>
         </div>
       </div>

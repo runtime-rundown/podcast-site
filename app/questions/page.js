@@ -1,7 +1,8 @@
-import styles from '../styles/SuggestionsPage.module.css';
-import LineBreak from '../components/LineBreak';
-import LogoBanner from '../components/LogoBanner';
-import ContactForm, { formTypes } from '../components/ContactForm';
+import styles from '../../styles/SuggestionsPage.module.css';
+import LineBreak from '../../components/LineBreak';
+import LogoBanner from '../../components/LogoBanner';
+import ContactForm from '../../components/ContactForm';
+import { formTypes } from '../../components/constants';
 
 const Questions = () => {
   return (
@@ -11,7 +12,10 @@ const Questions = () => {
       </div>
       <div className={styles.suggestionsCard}>
         <h2>Ask a Question</h2>
-        <p>Have a question for us? Post it here and we might answer it on a future show!</p>
+        <p>
+          Have a question for us? Post it here and we might answer it on a
+          future show!
+        </p>
       </div>
       <div className={styles.suggestionsWrapper}>
         <div className={styles.suggestionsCard}>

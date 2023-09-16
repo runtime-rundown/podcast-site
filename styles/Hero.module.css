@@ -16,9 +16,8 @@
   margin: 2px -5px;
   z-index: 2;
   background-color: var(--color-base-white);
-  transform: skewX(.5deg) skewY(.5deg);
+  transform: skewX(0.5deg) skewY(0.5deg);
 }
-
 
 .linkWrapper {
   border: 1px solid var(--color-accent-purple);
@@ -31,7 +30,6 @@
   display: none;
 }
 
-
 .title {
   font-size: 2em;
   font-weight: 800;
@@ -43,7 +41,6 @@
   font-size: 1.5em;
 }
 
-
 .profileCard {
   display: flex;
   border: 1px solid var(--color-accent-purple);
@@ -54,7 +51,7 @@
   margin: 2px -5px;
   z-index: 1;
   background-color: white;
-  transform: skewX(-.5deg) skewY(-.5deg);
+  transform: skewX(-0.5deg) skewY(-0.5deg);
 }
 
 .profileCardWrapper {
@@ -81,8 +78,13 @@
 }
 
 .lineBreak:before {
-  content: "";
-  background: linear-gradient(to right, var(--color-base-blue), var(--color-base-blue), transparent);
+  content: '';
+  background: linear-gradient(
+    to right,
+    var(--color-base-blue),
+    var(--color-base-blue),
+    transparent
+  );
   position: absolute;
   left: 1px;
   top: 50%;
@@ -98,7 +100,7 @@
   padding-right: 0.5em;
   line-height: 1em;
   color: var(--color-base-blue);
-  font-size: .75em;
+  font-size: 0.75em;
   background-color: #fcfcfa;
   text-transform: uppercase;
   font-weight: 800;

@@ -4,7 +4,7 @@ import styles from '../styles/LogoBanner.module.css';
 
 const LogoBanner = () => {
   return (
-    <Link href="/">
+    <Link href="/" legacyBehavior>
       <div className={styles.logoBanner}>
         <div className={styles.titleWrapper}>
           <h1 className={styles.logoTitle}>Runtime Rundown</h1>

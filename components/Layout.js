@@ -1,19 +1,14 @@
-import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import styles from '../styles/Layout.module.css';
 
 const Layout = ({ children }) => {
   return (
-    <>
-      <Head>
-        <title>Runtime Rundown</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div id="__next">
       <Header />
       <main className={styles.main}>{children}</main>
       <Footer />
-    </>
+    </div>
   );
 };
 
