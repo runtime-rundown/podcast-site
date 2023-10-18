@@ -11,3 +11,18 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+.container {
+  /* max-width: 960px; */
+  /* margin: 0 auto; */
+  height: 100vh;
+  padding: 0 1.5rem;
+  display: flex;
+}
+
+.episodeList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: scroll;
+}
