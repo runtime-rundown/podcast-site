@@ -14,7 +14,7 @@ function processTitle(title) {
 /**
  * @returns {SearchTerms} Map of words to episodes
  */
-function mapContentWordsToEpisodes(items) {
+function mapWordsToEpisodes(items) {
   const searchTerms = new Map();
   items.forEach(item => {
     const { contentSnippet, title } = item;
@@ -36,21 +36,27 @@ function mapContentWordsToEpisodes(items) {
 }
 
 /**
+ * @param {string} wordStart
+ * @param {SearchTerms} searchTerms
+ */
+function getWords(wordStart, searchTerms) {
+  return [...searchTerms.keys()].filter(key => key.startsWith(wordStart));
+}
+
+/**
  * Takes a map of words to episodes and returns a trie
  * @param {SearchTerms} searchTerms
  */
-function createTrieFromSearchTerms(searchTerms) {
+function createTrie(searchTerms) {
   const trie = new Map();
-  for (const [word, episodes] of searchTerms) {
-    // console.log('episodes', episodes);
-    // console.log('word', word);
+  for (const [word] of searchTerms) {
     let node = trie;
-    word.split('').forEach(char => {
+    word.split('').forEach((char, i) => {
       if (!node.has(char)) {
         node.set(char, new Map());
       }
       node = node.get(char);
-      node.set('episodes', episodes);
+      node.set('words', getWords(word.substring(0, i + 1), searchTerms));
     });
   }
   return trie;
@@ -58,33 +64,25 @@ function createTrieFromSearchTerms(searchTerms) {
 
 function searchTrie(trie, searchTerm) {
   let node = trie;
-  console.log('node', node);
-  searchTerm.split('').forEach(char => {
-    if (!node.has(char)) {
-      return false;
+  for (const char of searchTerm.split('')) {
+    if (node.has(char)) {
+      node = node.get(char);
+    } else {
+      return [];
     }
-    node = node.get(char);
-  });
-  if (node.has('episodes')) {
-    return node.get('episodes');
   }
-  return [];
+
+  return node.get('words') || [];
 }
 
 function Search({ episodes }) {
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Only recompute searchTerms when episodes changes
-  const searchTerms = useMemo(
-    () => mapContentWordsToEpisodes(episodes),
-    [episodes],
-  );
+  // Only need to compute these once. TODO: Move this to the server
+  const searchTerms = useMemo(() => mapWordsToEpisodes(episodes), [episodes]);
+  const trie = useMemo(() => createTrie(searchTerms), [searchTerms]);
 
-  const trie = useMemo(
-    () => createTrieFromSearchTerms(searchTerms),
-    [searchTerms],
-  );
-  // console.log('trie', trie);
+  const results = searchTrie(trie, searchTerm);
 
   return (
     <>
@@ -96,16 +94,17 @@ function Search({ episodes }) {
           onChange={e => setSearchTerm(e.target.value)}
         />
       </label>
-      {searchTerm && (
+      {results.length > 0 && (
         <ul>
-          {[...searchTrie(searchTerms, searchTerm)].map(title => {
-            return (
+          {results.map(result => {
+            const titles = [...searchTerms.get(result)];
+            return titles.map(title => (
               <div key={title}>
                 <Link href={`/episodes/${processTitle(title)}`}>
                   <li key={title}>{title}</li>
                 </Link>
               </div>
-            );
+            ));
           })}
         </ul>
       )}
