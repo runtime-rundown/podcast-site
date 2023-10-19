@@ -5,14 +5,14 @@ import Link from 'next/link';
 function searchTrie(trie, searchTerm) {
   let node = trie;
   for (const char of searchTerm.split('')) {
-    if (node.has(char)) {
-      node = node.get(char);
+    if (node[char]) {
+      node = node[char];
     } else {
       return [];
     }
   }
 
-  return node.get('words') || [];
+  return node.words || [];
 }
 
 // TODO: Deduplicate
@@ -38,7 +38,7 @@ function Search({ searchTerms, trie }) {
       {results.length > 0 && (
         <ul>
           {results.map(result => {
-            const titles = [...searchTerms.get(result)];
+            const titles = [...searchTerms[result]];
             return titles.map(title => (
               <div key={title}>
                 <Link href={`/episodes/${processTitle(title)}`}>

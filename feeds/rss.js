@@ -6,6 +6,18 @@ export const FEED = {
   url: 'https://anchor.fm/s/a82ae100/podcast/rss',
 };
 
+/**
+ * @typedef {{title: string, link: string, pubDate: string, content: string, contentSnippet: string}} FeedItem
+ */
+
+/**
+ * @typedef {{items: FeedItem}} FeedResponse
+ */
+
+/**
+ * @param {string} feedUrl
+ * @returns {Promise<FeedResponse>}
+ */
 export async function getFeed(feedUrl) {
   let parser = new Parser();
 

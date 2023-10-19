@@ -9,14 +9,15 @@ export const revalidate = 60;
 // TODO: Write tests for these trie functions
 /**
  * @typedef SearchTerms
- * @type {Map<string, Set<string>>}
+ * @type {Object.<string, Set<string>>}
  */
 
 /**
+ * @param {import('../feeds/rss').FeedItem[]} Array of feed items
  * @returns {SearchTerms} Map of words to episodes
  */
 function mapWordsToEpisodes(items) {
-  const searchTerms = new Map();
+  const searchTerms = {};
   items.forEach(item => {
     const { contentSnippet, title } = item;
     const words = `${contentSnippet}${title}`
@@ -26,10 +27,10 @@ function mapWordsToEpisodes(items) {
       .split(' ');
 
     words.forEach(word => {
-      if (searchTerms.has(word)) {
-        searchTerms.get(word).add(title);
+      if (searchTerms[word]) {
+        searchTerms[word].add(title);
       } else {
-        searchTerms.set(word, new Set([title]));
+        searchTerms[word] = new Set([title]);
       }
     });
   });
@@ -41,23 +42,24 @@ function mapWordsToEpisodes(items) {
  * @param {SearchTerms} searchTerms
  */
 function getWords(wordStart, searchTerms) {
-  return [...searchTerms.keys()].filter(key => key.startsWith(wordStart));
+  return Object.keys(searchTerms).filter(key => key.startsWith(wordStart));
 }
 
 /**
  * Takes a map of words to episodes and returns a trie
  * @param {SearchTerms} searchTerms
+ * @return {Object.<string, any>}
  */
 function createTrie(searchTerms) {
-  const trie = new Map();
-  for (const [word] of searchTerms) {
+  const trie = {};
+  for (const word of Object.keys(searchTerms)) {
     let node = trie;
     word.split('').forEach((char, i) => {
-      if (!node.has(char)) {
-        node.set(char, new Map());
+      if (!node[char]) {
+        node[char] = {};
       }
-      node = node.get(char);
-      node.set('words', getWords(word.substring(0, i + 1), searchTerms));
+      node = node[char];
+      node.words = getWords(word.substring(0, i + 1), searchTerms);
     });
   }
   return trie;
