@@ -20,7 +20,7 @@ function mapWordsToEpisodes(items) {
   const searchTerms = {};
   items.forEach(item => {
     const { contentSnippet, title } = item;
-    const words = `${contentSnippet}${title}`
+    const words = `${contentSnippet} ${title}`
       .toLowerCase()
       .replace(/\n/g, ' ')
       .replace(/[^\w ]*/g, '')
@@ -65,16 +65,25 @@ function createTrie(searchTerms) {
   return trie;
 }
 
+function createEpisodeMap(episodes) {
+  const episodeMap = {};
+  for (const episode of episodes) {
+    episodeMap[episode.title] = episode;
+  }
+  return episodeMap;
+}
+
 export default async function Home() {
   const { items: episodes } = await getFeed(FEED.url);
 
   const searchTerms = mapWordsToEpisodes(episodes);
   const trie = createTrie(searchTerms);
+  const episodeMap = createEpisodeMap(episodes);
 
   return (
     <>
       <Hero />
-      <Search trie={trie} searchTerms={searchTerms} />
+      <Search trie={trie} searchTerms={searchTerms} episodeMap={episodeMap} />
       <h2>All Episodes</h2>
       <div className={styles.gridWrapper}>
         {episodes.map(item => {

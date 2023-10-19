@@ -1,0 +1,36 @@
+.input {
+  height: 40px;
+  background: #fff;
+  color: #000;
+}
+
+.searchResults {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+.episodeResult {
+  display: flex;
+  flex-direction: column;
+  padding: 1.2em;
+  border-bottom: 1px solid #ccc;
+}
+
+.episodeTitle {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1em;
+}
+
+.episodeDescription {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.searchTerm {
+  font-weight: 600;
+  background: #ff0;
+}
