@@ -33,7 +33,7 @@ function splitContent(line, searchTerm) {
 function Search({ searchTerms, trie, episodeMap }) {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const results = searchTrie(trie, searchTerm);
+  const results = searchTrie(trie, searchTerm.toLowerCase());
 
   return (
     <>
