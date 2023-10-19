@@ -26,7 +26,7 @@ async function EpisodePage({ params: { slug } }) {
   }
 
   const {
-    pubDate,
+    // pubDate,
     content,
     enclosure: { url: src },
     ...episodeDetails
