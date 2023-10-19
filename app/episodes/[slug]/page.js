@@ -7,6 +7,7 @@ import { FEED, getFeed } from '../../../feeds/rss';
 
 export const revalidate = 604800;
 
+// TODO: Deduplicate
 const processTitle = title => {
   return title.toLowerCase().replaceAll(' ', '-');
 };

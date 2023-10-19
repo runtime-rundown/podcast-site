@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { format } from 'date-fns';
 import styles from '../styles/EpisodeCard.module.css';
 
+// TODO: Move this to utils
 const processTitle = title => {
   return title.toLowerCase().replaceAll(' ', '-');
 };
