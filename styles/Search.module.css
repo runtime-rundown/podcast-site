@@ -1,20 +1,32 @@
+.search {
+  z-index: 1000;  
+}
+
 .input {
   height: 40px;
   background: #fff;
   color: #000;
 }
 
+.searchResultsContainer {
+  position: absolute;
+}
+
 .searchResults {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: 1px solid #ccc;
+  /* border: 3px solid #ccc; */
+  border-radius: 12px;
+  background: var(--color-base-white);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
 .episodeResult {
   display: flex;
   flex-direction: column;
-  padding: 1.2em;
+  padding: 2em;
   border-bottom: 1px solid #ccc;
 }
 
@@ -26,11 +38,12 @@
 }
 
 .episodeDescription {
-  font-size: 0.9rem;
-  color: #666;
+  line-height: 1.5;
 }
 
-.searchTerm {
+.hilight {
   font-weight: 600;
-  background: #ff0;
+  border-radius: 4px;
+  color: var(--color-base-white);
+  background: var(--color-base-blue);
 }

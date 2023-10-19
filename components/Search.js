@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import styles from '../styles/Search.module.css';
 
+const MAX_CONTENT_LENGTH = 100;
+
 function searchTrie(trie, searchTerm) {
   let node = trie;
   for (const char of searchTerm.split('')) {
@@ -16,18 +18,40 @@ function searchTrie(trie, searchTerm) {
 }
 
 // TODO: Deduplicate
-function processTitle(title) {
-  return title.toLowerCase().replaceAll(' ', '-');
+const processTitle = title => title.toLowerCase().replaceAll(' ', '-');
+
+function trim(content) {
+  if (content.toString().length <= MAX_CONTENT_LENGTH) {
+    return content;
+  }
+
+  const halfMax = MAX_CONTENT_LENGTH / 2;
+
+  const [start, mid, end] = content;
+
+  // TODO: Better way to do this than using halfMax
+  const trimmedStart =
+    start.length < halfMax
+      ? start
+      : '...' + start.slice(start.length - halfMax);
+
+  const trimmedEnd = end.length < halfMax ? end : end.slice(0, halfMax) + '...';
+
+  return [trimmedStart, mid, trimmedEnd];
 }
 
-function splitContent(line, searchTerm) {
-  const lineIndex = line.toLowerCase().indexOf(searchTerm.toLowerCase());
+function splitOnTerm(content = '', searchTerm = '') {
+  const lineIndex = content.toLowerCase().indexOf(searchTerm.toLowerCase());
 
-  return [
-    line.slice(0, lineIndex),
-    line.slice(lineIndex, lineIndex + searchTerm.length),
-    line.slice(lineIndex + searchTerm.length),
-  ];
+  if (lineIndex === -1) {
+    return [content];
+  }
+
+  return trim([
+    content.slice(0, lineIndex),
+    content.slice(lineIndex, lineIndex + searchTerm.length),
+    content.slice(lineIndex + searchTerm.length),
+  ]);
 }
 
 function Search({ searchTerms, trie, episodeMap }) {
@@ -36,9 +60,9 @@ function Search({ searchTerms, trie, episodeMap }) {
   const results = searchTrie(trie, searchTerm.toLowerCase());
 
   return (
-    <>
+    <div className={styles.search}>
       <label>
-        <p>Search episodes</p>
+        <p>Search</p>
         <input
           className={styles.input}
           type="text"
@@ -47,37 +71,50 @@ function Search({ searchTerms, trie, episodeMap }) {
         />
       </label>
       {results.length > 0 && (
-        <ul className={styles.searchResults}>
-          {results.map(result => {
-            const titles = [...searchTerms[result]];
+        <div className={styles.searchResultsContainer}>
+          <ul className={styles.searchResults}>
+            {results.map(result => {
+              const titles = [...searchTerms[result]];
 
-            return titles.map(title => {
-              const contentLines =
-                episodeMap[title].contentSnippet.split(/\. |\n/);
+              return titles.map(title => {
+                const contentLines =
+                  episodeMap[title].contentSnippet.split(/\. |\n/);
 
-              const line = contentLines.find(line =>
-                line.toLowerCase().includes(searchTerm.toLowerCase()),
-              );
+                const contentLine = contentLines.find(line =>
+                  line.toLowerCase().includes(searchTerm.toLowerCase()),
+                );
 
-              const [start, highlight, end] = splitContent(line, searchTerm);
+                const [titleStart, titleHilight, titleEnd] = splitOnTerm(
+                  title,
+                  searchTerm,
+                );
+                const [contentStart, contentHilight, contentEnd] = splitOnTerm(
+                  contentLine,
+                  searchTerm,
+                );
 
-              return (
-                <li className={styles.episodeResult} key={title}>
-                  <Link href={`/episodes/${processTitle(title)}`}>
-                    <span className={styles.episodeTitle}>{title}</span>
-                    <div>
-                      <span>{start}</span>
-                      <span className={styles.searchTerm}>{highlight}</span>
-                      <span>{end}</span>
-                    </div>
-                  </Link>
-                </li>
-              );
-            });
-          })}
-        </ul>
+                return (
+                  <li className={styles.episodeResult} key={title}>
+                    <Link href={`/episodes/${processTitle(title)}`}>
+                      <div className={styles.episodeTitle}>
+                        <span>{titleStart}</span>
+                        <span className={styles.hilight}>{titleHilight}</span>
+                        <span>{titleEnd}</span>
+                      </div>
+                      <div className={styles.episodeDescription}>
+                        <span>{contentStart}</span>
+                        <span className={styles.hilight}>{contentHilight}</span>
+                        <span>{contentEnd}</span>
+                      </div>
+                    </Link>
+                  </li>
+                );
+              });
+            })}
+          </ul>
+        </div>
       )}
-    </>
+    </div>
   );
 }
 

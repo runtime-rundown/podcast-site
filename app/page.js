@@ -83,8 +83,10 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <Search trie={trie} searchTerms={searchTerms} episodeMap={episodeMap} />
-      <h2>All Episodes</h2>
+      <div className={styles.episodesHeader}>
+        <h2>All Episodes</h2>
+        <Search trie={trie} searchTerms={searchTerms} episodeMap={episodeMap} />
+      </div>
       <div className={styles.gridWrapper}>
         {episodes.map(item => {
           return <EpisodeCard {...item} key={item.title} />;
