@@ -1,11 +1,7 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import styles from '../styles/EpisodeCard.module.css';
-
-// TODO: Move this to utils
-const processTitle = title => {
-  return title.toLowerCase().replaceAll(' ', '-');
-};
+import { processTitle } from '../utils/formatting';
 
 function truncate(str, n, useWordBoundary = true) {
   if (str.length <= n) {

@@ -4,13 +4,9 @@ import Comments from '../../../components/Comments';
 import LineBreak from '../../../components/LineBreak';
 import Hero from '../../../components/Hero';
 import { FEED, getFeed } from '../../../feeds/rss';
+import { processTitle } from '../../../utils/formatting';
 
 export const revalidate = 604800;
-
-// TODO: Deduplicate
-const processTitle = title => {
-  return title.toLowerCase().replaceAll(' ', '-');
-};
 
 async function EpisodePage({ params: { slug } }) {
   // With `revalidate` this is treated like getStaticProps
