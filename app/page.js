@@ -4,7 +4,7 @@ import Search from '../components/Search';
 import EpisodeCard from '../components/EpisodeCard';
 import styles from '../styles/Index.module.css';
 import {
-  mapWordsToEpisodes,
+  mapWordsToEpisodeTitles,
   createEpisodeMap,
   createTrie,
 } from '../utils/search';
@@ -14,7 +14,7 @@ export const revalidate = 60;
 export default async function Home() {
   const { items: episodes } = await getFeed(FEED.url);
 
-  const searchTerms = mapWordsToEpisodes(episodes);
+  const searchTerms = mapWordsToEpisodeTitles(episodes);
   const trie = createTrie(searchTerms);
   const episodeMap = createEpisodeMap(episodes);
 

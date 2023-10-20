@@ -4,6 +4,7 @@
  * @type {Object.<string, Set<string>>}
  */
 
+// TODO: Get searchTrie working for multiple words
 /**
  * Search trie for searchTerm
  *
@@ -74,7 +75,7 @@ export function splitOnTerm(content = '', searchTerm = '') {
  * @param {import('../feeds/rss').FeedItem} Array of feed items
  * @returns {SearchTerms} Map of words to episodes
  */
-export function mapWordsToEpisodes(items) {
+export function mapWordsToEpisodeTitles(items) {
   const searchTerms = {};
   items.forEach(item => {
     const { contentSnippet, title } = item;
