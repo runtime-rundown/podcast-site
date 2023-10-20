@@ -9,7 +9,6 @@ function Search({ searchTerms, trie, episodeMap }) {
   const [searchTerm, setSearchTerm] = useState('');
 
   const results = searchTrie(trie, searchTerm.toLowerCase());
-  console.log('results', results);
 
   return (
     <div className={styles.search}>
