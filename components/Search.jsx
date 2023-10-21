@@ -7,18 +7,31 @@ import { processTitle } from '../utils/formatting';
 
 function Search({ searchTerms, trie, episodeMap }) {
   const [searchTerm, setSearchTerm] = useState('');
+  // const [isResultsOpen, setIsResultsOpen] = useState(false);
 
   const results = searchTrie(trie, searchTerm.toLowerCase());
 
+  // const openDropdown = () => setIsResultsOpen(true);
+  // const closeDropdown = () => setIsResultsOpen(false);
+
+  const handleSearch = e => {
+    // if (!isResultsOpen) {
+    //   openDropdown();
+    // }
+    setSearchTerm(e.target.value);
+  };
+
   return (
     <div className={styles.search}>
-      <label>
+      <label htmlFor="search">
         <p>Search</p>
         <input
-          className={styles.input}
+          id="search"
           type="text"
+          className={styles.input}
           value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
+          onChange={handleSearch}
+          // onBlur={closeDropdown}
         />
       </label>
       {results.length > 0 && (

@@ -1,4 +1,3 @@
-// TODO: Write tests for these trie functions
 /**
  * @typedef SearchTerms
  * @type {Object.<string, Set<string>>}
@@ -9,11 +8,13 @@
  * Search trie for searchTerm
  *
  * @param {Object.<string, any>} trie
+ * @param {string} input
  * @return {string[]} Array of words
  */
-export function searchTrie(trie, searchTerm) {
+export function searchTrie(trie, input) {
+  const lower = input.toLowerCase();
   let node = trie;
-  for (const char of searchTerm.split('')) {
+  for (const char of lower.split('')) {
     if (!node[char]) {
       return [];
     }
