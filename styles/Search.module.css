@@ -39,6 +39,8 @@
 
 .episodeDescription {
   line-height: 1.5;
+  padding: 1em 0;
+  border-top: 1px solid var(--color-accent-gray);
 }
 
 .hilight {
@@ -46,4 +48,10 @@
   border-radius: 4px;
   color: var(--color-base-white);
   background: var(--color-base-blue);
+}
+
+.contentLines {
+  display: flex;
+  flex-direction: column;
+  /* gap: 1em; */
 }

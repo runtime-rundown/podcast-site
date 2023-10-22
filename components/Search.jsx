@@ -44,16 +44,12 @@ function Search({ searchTerms, trie, episodeMap }) {
                 const contentLines =
                   episodeMap[title].contentSnippet.split(/\. |\n/);
 
-                const contentLine = contentLines.find(line =>
+                const matchingLines = contentLines.filter(line =>
                   line.toLowerCase().includes(searchTerm.toLowerCase()),
                 );
 
                 const [titleStart, titleHilight, titleEnd] = splitOnTerm(
                   title,
-                  searchTerm,
-                );
-                const [contentStart, contentHilight, contentEnd] = splitOnTerm(
-                  contentLine,
                   searchTerm,
                 );
 
@@ -65,10 +61,24 @@ function Search({ searchTerms, trie, episodeMap }) {
                         <span className={styles.hilight}>{titleHilight}</span>
                         <span>{titleEnd}</span>
                       </div>
-                      <div className={styles.episodeDescription}>
-                        <span>{contentStart}</span>
-                        <span className={styles.hilight}>{contentHilight}</span>
-                        <span>{contentEnd}</span>
+                      <div className={styles.contentLines}>
+                        {matchingLines.map(line => {
+                          const [contentStart, contentHilight, contentEnd] =
+                            splitOnTerm(line, searchTerm);
+
+                          return (
+                            <div
+                              key={line}
+                              className={styles.episodeDescription}
+                            >
+                              <span>{contentStart}</span>
+                              <span className={styles.hilight}>
+                                {contentHilight}
+                              </span>
+                              <span>{contentEnd}</span>
+                            </div>
+                          );
+                        })}
                       </div>
                     </Link>
                   </li>
