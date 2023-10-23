@@ -25,9 +25,22 @@
 
 .episodeResult {
   display: flex;
+  padding: 1em;
   flex-direction: column;
-  padding: 2em;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 2px solid var(--color-base-blue);
+}
+
+.episodeResult:last-child {
+  border-bottom: none;
+}
+
+.episodeLink {
+  padding: 1em;
+  border-radius: 4px;
+}
+
+.episodeLink:focus {
+  outline: 3px solid var(--color-base-blue);
 }
 
 .episodeTitle {
@@ -35,6 +48,7 @@
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 1em;
+  color: var(--color-accent-blue);
 }
 
 .episodeDescription {

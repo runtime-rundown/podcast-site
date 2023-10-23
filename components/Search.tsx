@@ -64,7 +64,10 @@ function Search({ searchTerms, trie, episodeMap }: SearchProps) {
 
                 return (
                   <li className={styles.episodeResult} key={title}>
-                    <Link href={`/episodes/${processTitle(title)}`}>
+                    <Link
+                      className={styles.episodeLink}
+                      href={`/episodes/${processTitle(title)}`}
+                    >
                       <div className={styles.episodeTitle}>
                         <span>{titleStart}</span>
                         <span className={styles.hilight}>{titleHilight}</span>
