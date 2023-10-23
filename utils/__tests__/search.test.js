@@ -5,6 +5,7 @@ import {
   mapWordsToEpisodeTitles,
   searchTrie,
   splitOnTerm,
+  processEpisodes,
 } from '../search';
 import {
   episodeMapFixture,
@@ -114,6 +115,16 @@ describe('Search utils', () => {
 
     it('handles empty content', () => {
       expect(splitOnTerm(undefined, 'max')).toEqual(['']);
+    });
+  });
+
+  describe('processEpisodes', () => {
+    it('happy path', () => {
+      expect(processEpisodes(episodesFixture)).toEqual({
+        episodeMap: episodeMapFixture,
+        searchTerms: searchTermsFixture,
+        trie: trieFixture,
+      });
     });
   });
 });

@@ -186,4 +186,5 @@ export const trieFixture = {
     },
     words: ['testing', 'title'],
   },
+  words: [],
 };

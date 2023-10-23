@@ -3,20 +3,15 @@ import Hero from '../components/Hero';
 import Search from '../components/Search';
 import EpisodeCard from '../components/EpisodeCard';
 import styles from '../styles/Index.module.css';
-import {
-  mapWordsToEpisodeTitles,
-  createEpisodeMap,
-  createTrie,
-} from '../utils/search';
+import { processEpisodes } from '../utils/search';
 
 export const revalidate = 60;
 
 export default async function Home() {
   const { items: episodes } = await getFeed(FEED.url);
 
-  const searchTerms = mapWordsToEpisodeTitles(episodes);
-  const trie = createTrie(searchTerms);
-  const episodeMap = createEpisodeMap(episodes);
+  // Do this work on the server to avoid memoizing on the client
+  const { trie, episodeMap, searchTerms } = processEpisodes(episodes);
 
   return (
     <>

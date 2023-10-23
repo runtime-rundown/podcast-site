@@ -1,24 +1,26 @@
-/**
- * @typedef SearchTerms
- * @type {Object.<string, Set<string>>}
- */
+import { Episode } from '../feeds/rss';
+
+export type SearchTerms = { [k: string]: Set<string> };
+export type EpisodeMap = { [k: string]: Episode };
+
+export type Trie = {
+  [k: Exclude<string, 'words'>]: Trie | string[];
+  words: string[];
+};
 
 // TODO: Get searchTrie working for multiple words
+
 /**
- * Search trie for searchTerm
- *
- * @param {Object.<string, any>} trie
- * @param {string} input
- * @return {string[]} Array of words
+ * Search for input in trie, return words if found
  */
-export function searchTrie(trie, input) {
+export function searchTrie(trie: Trie, input: string): string[] {
   const lower = input.toLowerCase();
   let node = trie;
   for (const char of lower.split('')) {
     if (!node[char]) {
       return [];
     }
-    node = node[char];
+    node = node[char] as Trie;
   }
 
   return node.words || [];
@@ -26,11 +28,8 @@ export function searchTrie(trie, input) {
 
 /**
  * Trim beginning and end of content to fit within MAX_CONTENT_LENGTH
- *
- * @param {string[]} content (start, mid, end)
- * @returns {string[]} (start, mid, end)
  */
-function trim(content) {
+function trim(content: string[]): string[] {
   const MAX_CONTENT_LENGTH = 100;
 
   if (content.toString().length <= MAX_CONTENT_LENGTH) {
@@ -53,12 +52,9 @@ function trim(content) {
 }
 
 /**
- * Trim beginning and end of content to fit within MAX_CONTENT_LENGTH
- *
- * @param {string[]} content (start, mid, end)
- * @returns {string[]} (start, mid, end)
+ * Split content into before input, input, and after input
  */
-export function splitOnTerm(content = '', searchTerm = '') {
+export function splitOnTerm(content = '', searchTerm = ''): string[] {
   const lineIndex = content.toLowerCase().indexOf(searchTerm.toLowerCase());
 
   if (lineIndex === -1) {
@@ -73,11 +69,10 @@ export function splitOnTerm(content = '', searchTerm = '') {
 }
 
 /**
- * @param {import('../feeds/rss').FeedItem} Array of feed items
- * @returns {SearchTerms} Map of words to episodes
+ * Map all words to titles of episodes that contain them
  */
-export function mapWordsToEpisodeTitles(items) {
-  const searchTerms = {};
+export function mapWordsToEpisodeTitles(items: Episode[]): SearchTerms {
+  const searchTerms: SearchTerms = {};
   items.forEach(item => {
     const { contentSnippet, title } = item;
     const words = `${contentSnippet} ${title}`
@@ -98,27 +93,27 @@ export function mapWordsToEpisodeTitles(items) {
 }
 
 /**
- * @param {string} wordStart
- * @param {SearchTerms} searchTerms
+ * Get all words that start with wordStart
  */
-function getWords(wordStart, searchTerms) {
-  return Object.keys(searchTerms).filter(key => key.startsWith(wordStart));
+function getWords(wordStart: string, searchTerms: SearchTerms): string[] {
+  return Object.keys(searchTerms)
+    .filter(key => key.startsWith(wordStart))
+    .sort();
 }
 
 /**
  * Takes a map of words to episodes and returns a trie
- * @param {SearchTerms} searchTerms
- * @return {Object.<string, any>}
  */
-export function createTrie(searchTerms) {
-  const trie = {};
+export function createTrie(searchTerms: SearchTerms): Trie {
+  const trie: Trie = { words: [] };
   for (const word of Object.keys(searchTerms)) {
     let node = trie;
     word.split('').forEach((char, i) => {
       if (!node[char]) {
-        node[char] = {};
+        node[char] = { words: [] };
       }
-      node = node[char];
+
+      node = node[char] as Trie;
       node.words = getWords(word.substring(0, i + 1), searchTerms);
     });
   }
@@ -126,13 +121,27 @@ export function createTrie(searchTerms) {
 }
 
 /**
- * @param {import('../feeds/rss').FeedItem[]} episodes
- * @returns {Object.<string, import('../feeds/rss').FeedItem>}
+ * Convert array of episodes into a map keyed by title
  */
-export function createEpisodeMap(episodes) {
-  const episodeMap = {};
+export function createEpisodeMap(episodes: Episode[]): EpisodeMap {
+  const episodeMap: EpisodeMap = {};
   for (const episode of episodes) {
     episodeMap[episode.title] = episode;
   }
   return episodeMap;
+}
+
+/**
+ * Main export, single function for integration testing
+ */
+export function processEpisodes(episodes: Episode[]): {
+  trie: Trie;
+  searchTerms: SearchTerms;
+  episodeMap: EpisodeMap;
+} {
+  const searchTerms = mapWordsToEpisodeTitles(episodes);
+  const trie = createTrie(searchTerms);
+  const episodeMap = createEpisodeMap(episodes);
+
+  return { trie, searchTerms, episodeMap };
 }
