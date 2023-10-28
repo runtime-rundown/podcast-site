@@ -9,12 +9,11 @@ export type Trie = {
 };
 
 // TODO: Get searchTrie working for multiple words
+// TODO: Convert dash to space
 
-/**
- * Search for input in trie, return words if found
- */
-export function searchTrie(trie: Trie, input: string): string[] {
+export function getMatchingWords(trie: Trie, input: string): string[] {
   const lower = input.toLowerCase();
+
   let node = trie;
   for (const char of lower.split('')) {
     if (!node[char]) {
@@ -24,6 +23,33 @@ export function searchTrie(trie: Trie, input: string): string[] {
   }
 
   return node.words || [];
+}
+
+function getTitlesFromTrieResults(result: string[], searchTerms: SearchTerms) {
+  const titles = result.reduce((acc, curr) => {
+    for (const title of searchTerms[curr]) {
+      acc.add(title);
+    }
+    return acc;
+  }, new Set<string>());
+
+  return Array.from(titles);
+}
+
+/**
+ * Search for input in trie, return episode titles if found
+ */
+export function searchForTitles({
+  trie,
+  searchTerms,
+  searchTerm,
+}: {
+  trie: Trie;
+  searchTerms: SearchTerms;
+  searchTerm: string;
+}): string[] {
+  const result = getMatchingWords(trie, searchTerm);
+  return getTitlesFromTrieResults(result, searchTerms);
 }
 
 /**

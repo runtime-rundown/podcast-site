@@ -1,10 +1,8 @@
 export const episodesFixture = [
   { title: 'React', contentSnippet: 'An episode about React\nalways React' },
   { title: 'Testing', contentSnippet: 'An episode about testing' },
-  {
-    title: 'Another title',
-    contentSnippet: 'An episode about something else',
-  },
+  { title: 'Other', contentSnippet: 'Another random episode' },
+  { title: 'Bee', contentSnippet: 'Bee episode' },
 ];
 
 export const episodeMapFixture = {
@@ -13,23 +11,24 @@ export const episodeMapFixture = {
     contentSnippet: 'An episode about React\nalways React',
   },
   Testing: { title: 'Testing', contentSnippet: 'An episode about testing' },
-  'Another title': {
-    title: 'Another title',
-    contentSnippet: 'An episode about something else',
+  Other: {
+    title: 'Other',
+    contentSnippet: 'Another random episode',
   },
+  Bee: { title: 'Bee', contentSnippet: 'Bee episode' },
 };
 
 export const searchTermsFixture = {
-  about: new Set(['React', 'Testing', 'Another title']),
+  about: new Set(['React', 'Testing']),
   always: new Set(['React']),
-  an: new Set(['React', 'Testing', 'Another title']),
-  another: new Set(['Another title']),
-  else: new Set(['Another title']),
-  episode: new Set(['React', 'Testing', 'Another title']),
+  an: new Set(['React', 'Testing']),
+  bee: new Set(['Bee']),
+  other: new Set(['Other']),
+  another: new Set(['Other']),
+  episode: new Set(['React', 'Testing', 'Other', 'Bee']),
   react: new Set(['React']),
-  something: new Set(['Another title']),
+  random: new Set(['Other']),
   testing: new Set(['Testing']),
-  title: new Set(['Another title']),
 };
 
 export const trieFixture = {
@@ -81,16 +80,16 @@ export const trieFixture = {
     },
     words: ['about', 'always', 'an', 'another'],
   },
-  e: {
-    l: {
-      s: {
-        e: {
-          words: ['else'],
-        },
-        words: ['else'],
+  b: {
+    e: {
+      e: {
+        words: ['bee'],
       },
-      words: ['else'],
+      words: ['bee'],
     },
+    words: ['bee'],
+  },
+  e: {
     p: {
       i: {
         s: {
@@ -109,9 +108,24 @@ export const trieFixture = {
       },
       words: ['episode'],
     },
-    words: ['else', 'episode'],
+    words: ['episode'],
   },
   r: {
+    a: {
+      n: {
+        d: {
+          o: {
+            m: {
+              words: ['random'],
+            },
+            words: ['random'],
+          },
+          words: ['random'],
+        },
+        words: ['random'],
+      },
+      words: ['random'],
+    },
     e: {
       a: {
         c: {
@@ -124,34 +138,22 @@ export const trieFixture = {
       },
       words: ['react'],
     },
-    words: ['react'],
+    words: ['random', 'react'],
   },
-  s: {
-    o: {
-      m: {
+  o: {
+    t: {
+      h: {
         e: {
-          t: {
-            h: {
-              i: {
-                n: {
-                  g: {
-                    words: ['something'],
-                  },
-                  words: ['something'],
-                },
-                words: ['something'],
-              },
-              words: ['something'],
-            },
-            words: ['something'],
+          r: {
+            words: ['other'],
           },
-          words: ['something'],
+          words: ['other'],
         },
-        words: ['something'],
+        words: ['other'],
       },
-      words: ['something'],
+      words: ['other'],
     },
-    words: ['something'],
+    words: ['other'],
   },
   t: {
     e: {
@@ -172,19 +174,7 @@ export const trieFixture = {
       },
       words: ['testing'],
     },
-    i: {
-      t: {
-        l: {
-          e: {
-            words: ['title'],
-          },
-          words: ['title'],
-        },
-        words: ['title'],
-      },
-      words: ['title'],
-    },
-    words: ['testing', 'title'],
+    words: ['testing'],
   },
   words: [],
 };

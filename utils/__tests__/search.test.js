@@ -3,14 +3,15 @@ import {
   createEpisodeMap,
   createTrie,
   mapWordsToEpisodeTitles,
-  searchTrie,
   splitOnTerm,
   processEpisodes,
+  getMatchingWords,
+  searchForTitles,
 } from '../search';
 import {
   episodeMapFixture,
   episodesFixture,
-  searchTermsFixture,
+  searchTermsFixture as searchTerms,
   trieFixture,
 } from '../../__fixtures__/episodes';
 
@@ -21,14 +22,14 @@ describe('Search utils', () => {
   });
 
   it('creates a trie', () => {
-    const trie = createTrie(searchTermsFixture);
+    const trie = createTrie(searchTerms);
     expect(trie).toEqual(trieFixture);
   });
 
   describe('mapWordsToEpisodeTitles', () => {
     it('creates a map of search terms to episode titles', () => {
       const searchTerms = mapWordsToEpisodeTitles(episodesFixture);
-      expect(searchTerms).toEqual(searchTermsFixture);
+      expect(searchTerms).toEqual(searchTerms);
     });
 
     it('search terms are lowercased', () => {
@@ -47,28 +48,60 @@ describe('Search utils', () => {
 
   describe('searchTrie', () => {
     it('returns a match', () => {
-      const trie = createTrie(searchTermsFixture);
-      expect(searchTrie(trie, 'about')).toEqual(['about']);
+      const trie = createTrie(searchTerms);
+      expect(getMatchingWords(trie, 'about')).toEqual(['about']);
     });
 
     it('is case insensitive', () => {
-      const trie = createTrie(searchTermsFixture);
-      expect(searchTrie(trie, 'aBoUt')).toEqual(['about']);
+      const trie = createTrie(searchTerms);
+      expect(getMatchingWords(trie, 'aBoUt')).toEqual(['about']);
     });
 
     it('returns multiple matches', () => {
-      const trie = createTrie(searchTermsFixture);
-      expect(searchTrie(trie, 'e')).toEqual(['else', 'episode']);
+      const trie = createTrie(searchTerms);
+      expect(getMatchingWords(trie, 'an')).toEqual(['an', 'another']);
     });
 
     it('returns empty array for an empty input', () => {
-      const trie = createTrie(searchTermsFixture);
-      expect(searchTrie(trie, '')).toEqual([]);
+      const trie = createTrie(searchTerms);
+      expect(getMatchingWords(trie, '')).toEqual([]);
     });
 
     it('returns empty array for no match', () => {
-      const trie = createTrie(searchTermsFixture);
-      expect(searchTrie(trie, 'xyz')).toEqual([]);
+      const trie = createTrie(searchTerms);
+      expect(getMatchingWords(trie, 'xyz')).toEqual([]);
+    });
+
+    // How do I want to separate multiple search terms?
+    // - 2d array? [['episode'], ['another', 'an']]
+    // - Map? { episode: ['episode'], an: ['another', 'an']]
+    // Intersection of Sets?
+    //  - Reduce Sets and get intersection
+    // Maybe have getMatchingWords return titles instead of terms?
+    it.skip('returns match for multiple words', () => {
+      const trie = createTrie(searchTerms);
+      expect(getMatchingWords(trie, 'episode an')).toEqual({
+        episode: ['episode'],
+        an: ['another', 'an'],
+      });
+    });
+
+    it.todo('returns match for multiple words (multiple lines)');
+  });
+
+  describe('searchForTitles', () => {
+    it('returns titles for search term', () => {
+      const trie = createTrie(searchTerms);
+      expect(
+        searchForTitles({ trie, searchTerms, searchTerm: 'epis' }),
+      ).toEqual(['React', 'Testing', 'Other', 'Bee']);
+    });
+
+    it('returns empty array if no match', () => {
+      const trie = createTrie(searchTerms);
+      expect(searchForTitles({ trie, searchTerms, searchTerm: 'xyz' })).toEqual(
+        [],
+      );
     });
   });
 
@@ -122,7 +155,7 @@ describe('Search utils', () => {
     it('happy path', () => {
       expect(processEpisodes(episodesFixture)).toEqual({
         episodeMap: episodeMapFixture,
-        searchTerms: searchTermsFixture,
+        searchTerms: searchTerms,
         trie: trieFixture,
       });
     });
