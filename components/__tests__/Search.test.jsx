@@ -65,5 +65,23 @@ describe('Search', () => {
     );
   });
 
-  it.todo('matches multiple words');
+  it('matches multiple words', async () => {
+    render(
+      <Search
+        trie={trieFixture}
+        episodeMap={episodeMapFixture}
+        searchTerms={searchTermsFixture}
+      />,
+    );
+    expect(screen.queryByRole('list')).not.toBeTruthy();
+    fireEvent.change(screen.getByLabelText(/search/i), {
+      target: { value: 'an episode' },
+    });
+    expect(screen.getByRole('list')).toBeTruthy();
+    const listItems = screen.getAllByRole('listitem');
+    expect(listItems.length).toBe(3);
+    expect(listItems[0].textContent).toMatch('An episode about React');
+    expect(listItems[1].textContent).toMatch('An episode about testing');
+    expect(listItems[2].textContent).toMatch('Another random episode');
+  });
 });

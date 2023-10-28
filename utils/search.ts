@@ -25,7 +25,10 @@ export function getMatchingWords(trie: Trie, input: string): string[] {
   return node.words || [];
 }
 
-function getTitlesFromTrieResults(result: string[], searchTerms: SearchTerms) {
+function getTitlesFromTrieResults(
+  result: string[],
+  searchTerms: SearchTerms,
+): Set<string> {
   const titles = result.reduce((acc, curr) => {
     for (const title of searchTerms[curr]) {
       acc.add(title);
@@ -33,11 +36,13 @@ function getTitlesFromTrieResults(result: string[], searchTerms: SearchTerms) {
     return acc;
   }, new Set<string>());
 
-  return Array.from(titles);
+  // return Array.from(titles);
+  return titles;
 }
 
 /**
- * Search for input in trie, return episode titles if found
+ * Search for input in trie, return episode titles if found. If input is
+ * multiple words, return titles that contain all words.
  */
 export function searchForTitles({
   trie,
@@ -48,14 +53,40 @@ export function searchForTitles({
   searchTerms: SearchTerms;
   searchTerm: string;
 }): string[] {
-  const result = getMatchingWords(trie, searchTerm);
-  return getTitlesFromTrieResults(result, searchTerms);
+  // TODO: Memoize each word's results
+  const words = searchTerm.trim().split(' ');
+
+  const titlesMatchingAllWords = words.reduce((acc, word) => {
+    const matches = getMatchingWords(trie, word);
+
+    if (!matches) {
+      return acc;
+    }
+
+    const tits = getTitlesFromTrieResults(matches, searchTerms);
+
+    if (!acc.size) {
+      return new Set<string>(tits);
+    }
+
+    const result = new Set<string>();
+
+    tits.forEach(tit => {
+      if (acc.has(tit)) {
+        result.add(tit);
+      }
+    });
+
+    return result;
+  }, new Set<string>());
+
+  return [...titlesMatchingAllWords];
 }
 
 /**
  * Trim beginning and end of content to fit within MAX_CONTENT_LENGTH
  */
-function trim(content: string[]): string[] {
+function truncate(content: string[]): string[] {
   const MAX_CONTENT_LENGTH = 100;
 
   if (content.toString().length <= MAX_CONTENT_LENGTH) {
@@ -67,14 +98,15 @@ function trim(content: string[]): string[] {
   const [start, mid, end] = content;
 
   // TODO: Better way to do this than using halfMax
-  const trimmedStart =
+  const truncatedStart =
     start.length < halfMax
       ? start
       : '...' + start.slice(start.length - halfMax);
 
-  const trimmedEnd = end.length < halfMax ? end : end.slice(0, halfMax) + '...';
+  const truncatedEnd =
+    end.length < halfMax ? end : end.slice(0, halfMax) + '...';
 
-  return [trimmedStart, mid, trimmedEnd];
+  return [truncatedStart, mid, truncatedEnd];
 }
 
 /**
@@ -87,7 +119,7 @@ export function splitOnTerm(content = '', searchTerm = ''): string[] {
     return [content];
   }
 
-  return trim([
+  return truncate([
     content.slice(0, lineIndex),
     content.slice(lineIndex, lineIndex + searchTerm.length),
     content.slice(lineIndex + searchTerm.length),

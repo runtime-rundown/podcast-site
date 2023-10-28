@@ -72,36 +72,47 @@ describe('Search utils', () => {
       expect(getMatchingWords(trie, 'xyz')).toEqual([]);
     });
 
-    // How do I want to separate multiple search terms?
-    // - 2d array? [['episode'], ['another', 'an']]
-    // - Map? { episode: ['episode'], an: ['another', 'an']]
-    // Intersection of Sets?
-    //  - Reduce Sets and get intersection
-    // Maybe have getMatchingWords return titles instead of terms?
-    it.skip('returns match for multiple words', () => {
-      const trie = createTrie(searchTerms);
-      expect(getMatchingWords(trie, 'episode an')).toEqual({
-        episode: ['episode'],
-        an: ['another', 'an'],
-      });
-    });
-
     it.todo('returns match for multiple words (multiple lines)');
   });
 
   describe('searchForTitles', () => {
-    it('returns titles for search term', () => {
-      const trie = createTrie(searchTerms);
-      expect(
-        searchForTitles({ trie, searchTerms, searchTerm: 'epis' }),
-      ).toEqual(['React', 'Testing', 'Other', 'Bee']);
+    describe('single search term', () => {
+      it('returns titles for search term', () => {
+        const trie = createTrie(searchTerms);
+        expect(
+          searchForTitles({ trie, searchTerms, searchTerm: 'epis' }),
+        ).toEqual(['React', 'Testing', 'Other', 'Bee']);
+      });
+
+      it('trims whitespace around search', () => {
+        const trie = createTrie(searchTerms);
+        expect(
+          searchForTitles({ trie, searchTerms, searchTerm: 'react ' }),
+        ).toEqual(['React']);
+      });
+
+      it('returns empty array if no match', () => {
+        const trie = createTrie(searchTerms);
+        expect(
+          searchForTitles({ trie, searchTerms, searchTerm: 'xyz' }),
+        ).toEqual([]);
+      });
     });
 
-    it('returns empty array if no match', () => {
-      const trie = createTrie(searchTerms);
-      expect(searchForTitles({ trie, searchTerms, searchTerm: 'xyz' })).toEqual(
-        [],
-      );
+    describe('multiple search terms', () => {
+      it('multiple matching words returns titles that match ALL words', () => {
+        const trie = createTrie(searchTerms);
+        expect(
+          searchForTitles({ trie, searchTerms, searchTerm: 'epIsOde an' }),
+        ).toEqual(['React', 'Testing', 'Other']);
+      });
+
+      it('returns empty array if one term doesnt match', () => {
+        const trie = createTrie(searchTerms);
+        expect(
+          searchForTitles({ trie, searchTerms, searchTerm: 'episode xx' }),
+        ).toEqual([]);
+      });
     });
   });
 
