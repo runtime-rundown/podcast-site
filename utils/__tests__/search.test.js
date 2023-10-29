@@ -125,7 +125,7 @@ describe('Search utils', () => {
       expect(splitOnTerm(content, 'con')).toEqual(['Some ', 'con', 'tent']);
     });
 
-    it('trims beginning', () => {
+    it('truncates beginning', () => {
       expect(splitOnTerm(LONG_CONTENT, 'max')).toEqual([
         '...absolutely, clearly, one hundred percent overflow ',
         'max',
@@ -133,7 +133,7 @@ describe('Search utils', () => {
       ]);
     });
 
-    it('trims end', () => {
+    it('truncates end', () => {
       expect(splitOnTerm(LONG_CONTENT, 'much')).toEqual([
         'Some ',
         'much',
@@ -141,7 +141,7 @@ describe('Search utils', () => {
       ]);
     });
 
-    it('trims both sides', () => {
+    it('truncates both sides', () => {
       expect(splitOnTerm(LONG_CONTENT, 'definitely')).toEqual([
         '...longer, more verbose content that will certainly, ',
         'definitely',
@@ -157,8 +157,33 @@ describe('Search utils', () => {
       ]);
     });
 
+    it('ignores whitespace on either side', () => {
+      expect(splitOnTerm('Some content', ' con ')).toEqual([
+        'Some ',
+        'con',
+        'tent',
+      ]);
+    });
+
     it('handles empty content', () => {
       expect(splitOnTerm(undefined, 'max')).toEqual(['']);
+    });
+
+    it('highlights match in multiple terms', () => {
+      expect(splitOnTerm(LONG_CONTENT, 'longer verbose')).toEqual([
+        'Some much ',
+        'longer',
+        ', more verbose content that will certainly, defini...',
+      ]);
+    });
+
+    it('highlights first matching term of multiple terms', () => {
+      // verbose is later in the sentence but it's the first match
+      expect(splitOnTerm(LONG_CONTENT, 'foo verbose')).toEqual([
+        'Some much longer, more ',
+        'verbose',
+        ' content that will certainly, definitely, absolute...',
+      ]);
     });
   });
 

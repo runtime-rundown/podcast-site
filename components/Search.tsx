@@ -19,7 +19,6 @@ type SearchProps = {
 
 function Search({ searchTerms, trie, episodeMap }: SearchProps) {
   const [searchTerm, setSearchTerm] = useState('');
-  // const splitTerms = searchTerm.split(' ');
 
   const titles = searchForTitles({
     trie,
@@ -52,8 +51,13 @@ function Search({ searchTerms, trie, episodeMap }: SearchProps) {
               const contentLines =
                 episodeMap[title].contentSnippet.split(/\. |\n/);
 
+              const terms = searchTerm.trim().split(' ');
+
+              const regex = new RegExp(`(${terms.join('|')})`, 'gi');
+
+              // TODO: Make highlighting work for multiple terms
               const matchingLines = contentLines.filter(line =>
-                line.toLowerCase().includes(searchTerm.toLowerCase()),
+                line.match(regex),
               );
 
               const [titleStart, titleHilight, titleEnd] = splitOnTerm(

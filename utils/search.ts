@@ -63,17 +63,17 @@ export function searchForTitles({
       return acc;
     }
 
-    const tits = getTitlesFromTrieResults(matches, searchTerms);
+    const titles = getTitlesFromTrieResults(matches, searchTerms);
 
     if (!acc.size) {
-      return new Set<string>(tits);
+      return new Set<string>(titles);
     }
 
     const result = new Set<string>();
 
-    tits.forEach(tit => {
-      if (acc.has(tit)) {
-        result.add(tit);
+    titles.forEach(title => {
+      if (acc.has(title)) {
+        result.add(title);
       }
     });
 
@@ -113,16 +113,24 @@ function truncate(content: string[]): string[] {
  * Split content into before input, input, and after input
  */
 export function splitOnTerm(content = '', searchTerm = ''): string[] {
-  const lineIndex = content.toLowerCase().indexOf(searchTerm.toLowerCase());
+  // TODO: Currently only highlights the first matching term, but would be nice
+  // to highlight all matching terms
+  const terms = searchTerm.trim().split(' ');
+  const re = new RegExp(`(${terms.join('|')})`, 'gi');
+  const match = content.match(re);
 
-  if (lineIndex === -1) {
+  if (!match) {
     return [content];
   }
 
+  const [firstMatch] = match;
+
+  const lineIndex = content.toLowerCase().indexOf(firstMatch.toLowerCase());
+
   return truncate([
     content.slice(0, lineIndex),
-    content.slice(lineIndex, lineIndex + searchTerm.length),
-    content.slice(lineIndex + searchTerm.length),
+    content.slice(lineIndex, lineIndex + firstMatch.length),
+    content.slice(lineIndex + firstMatch.length),
   ]);
 }
 

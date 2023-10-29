@@ -80,8 +80,11 @@ describe('Search', () => {
     expect(screen.getByRole('list')).toBeTruthy();
     const listItems = screen.getAllByRole('listitem');
     expect(listItems.length).toBe(3);
+
     expect(listItems[0].textContent).toMatch('An episode about React');
     expect(listItems[1].textContent).toMatch('An episode about testing');
     expect(listItems[2].textContent).toMatch('Another random episode');
+
+    // TODO: Test that highlighting works
   });
 });
