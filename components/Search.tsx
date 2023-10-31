@@ -60,6 +60,7 @@ function Search({ searchTerms, trie, episodeMap }: SearchProps) {
         <input
           id="search"
           type="text"
+          autoComplete="off"
           className={styles.input}
           value={searchTerm}
           onChange={handleSearch}

@@ -3,9 +3,11 @@
 }
 
 .input {
-  height: 40px;
-  background: #fff;
-  color: #000;
+  padding: 8px 16px;
+  background-color: var(--color-base-white);
+  border: 2px solid var(--color-base-blue);
+  color: var(--color-base-blue);
+  border-radius: 4px;
 }
 
 .searchResultsContainer {
