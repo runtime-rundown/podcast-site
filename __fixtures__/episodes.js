@@ -2,7 +2,7 @@ export const episodesFixture = [
   { title: 'React', contentSnippet: 'An episode about React\nalways React' },
   { title: 'Testing', contentSnippet: 'An episode about testing' },
   { title: 'Other', contentSnippet: 'Another random episode' },
-  { title: 'Bee', contentSnippet: 'Bee episode' },
+  { title: 'Career', contentSnippet: 'Career episode' },
 ];
 
 export const episodeMapFixture = {
@@ -15,17 +15,17 @@ export const episodeMapFixture = {
     title: 'Other',
     contentSnippet: 'Another random episode',
   },
-  Bee: { title: 'Bee', contentSnippet: 'Bee episode' },
+  Career: { title: 'Career', contentSnippet: 'Career episode' },
 };
 
 export const searchTermsFixture = {
   about: new Set(['React', 'Testing']),
   always: new Set(['React']),
   an: new Set(['React', 'Testing']),
-  bee: new Set(['Bee']),
+  career: new Set(['Career']),
   other: new Set(['Other']),
   another: new Set(['Other']),
-  episode: new Set(['React', 'Testing', 'Other', 'Bee']),
+  episode: new Set(['React', 'Testing', 'Other', 'Career']),
   react: new Set(['React']),
   random: new Set(['Other']),
   testing: new Set(['Testing']),
@@ -80,14 +80,23 @@ export const trieFixture = {
     },
     words: ['about', 'always', 'an', 'another'],
   },
-  b: {
-    e: {
-      e: {
-        words: ['bee'],
+  c: {
+    a: {
+      r: {
+        e: {
+          e: {
+            r: {
+              words: ['career'],
+            },
+            words: ['career'],
+          },
+          words: ['career'],
+        },
+        words: ['career'],
       },
-      words: ['bee'],
+      words: ['career'],
     },
-    words: ['bee'],
+    words: ['career'],
   },
   e: {
     p: {

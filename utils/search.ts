@@ -142,7 +142,7 @@ export function mapWordsToEpisodeTitles(items: Episode[]): SearchTerms {
     const { contentSnippet, title } = item;
     const words = `${contentSnippet} ${title}`
       .toLowerCase()
-      .replace(/\n/g, ' ')
+      .replace(/[\n-]/g, ' ')
       .replace(/[^\w ]*/g, '')
       .split(' ');
 

@@ -16,14 +16,16 @@ import {
 } from '../../__fixtures__/episodes';
 
 describe('Search utils', () => {
-  it('createEpisodeMap', () => {
-    const episodeMap = createEpisodeMap(episodesFixture);
-    expect(episodeMap).toEqual(episodeMapFixture);
-  });
-
   it('creates a trie', () => {
     const trie = createTrie(searchTerms);
     expect(trie).toEqual(trieFixture);
+  });
+
+  describe('createEpisodeMap', () => {
+    it('maps titles to episodes', () => {
+      const episodeMap = createEpisodeMap(episodesFixture);
+      expect(episodeMap).toEqual(episodeMapFixture);
+    });
   });
 
   describe('mapWordsToEpisodeTitles', () => {
@@ -42,6 +44,27 @@ describe('Search utils', () => {
         an: new Set(['React']),
         episode: new Set(['React']),
         react: new Set(['React']),
+      });
+    });
+
+    it('Separates words with dashes', () => {
+      const ep = {
+        title: 'The one about dashes',
+        contentSnippet: 'An episode with a dash-in-it',
+      };
+      const searchTerms = mapWordsToEpisodeTitles([ep]);
+      expect(searchTerms).toEqual({
+        the: new Set(['The one about dashes']),
+        one: new Set(['The one about dashes']),
+        about: new Set(['The one about dashes']),
+        dashes: new Set(['The one about dashes']),
+        dash: new Set(['The one about dashes']),
+        in: new Set(['The one about dashes']),
+        it: new Set(['The one about dashes']),
+        an: new Set(['The one about dashes']),
+        episode: new Set(['The one about dashes']),
+        with: new Set(['The one about dashes']),
+        a: new Set(['The one about dashes']),
       });
     });
   });
@@ -81,7 +104,7 @@ describe('Search utils', () => {
         const trie = createTrie(searchTerms);
         expect(
           searchForTitles({ trie, searchTerms, searchTerm: 'epis' }),
-        ).toEqual(['React', 'Testing', 'Other', 'Bee']);
+        ).toEqual(['React', 'Testing', 'Other', 'Career']);
       });
 
       it('trims whitespace around search', () => {
