@@ -8,8 +8,6 @@ export type Trie = {
   words: string[];
 };
 
-// TODO: Convert dash to space
-
 export function getMatchingWords(trie: Trie, input: string): string[] {
   const lower = input.toLowerCase();
 
@@ -35,7 +33,6 @@ function getTitlesFromTrieResults(
     return acc;
   }, new Set<string>());
 
-  // return Array.from(titles);
   return titles;
 }
 
