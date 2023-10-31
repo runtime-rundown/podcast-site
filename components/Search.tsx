@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   EpisodeMap,
@@ -21,22 +21,36 @@ function Search({ searchTerms, trie, episodeMap }: SearchProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  const inputEl = React.useRef<HTMLInputElement>(null);
+
+  // Focus on the search input when the user presses '/'
+  // TODO: Write a test for this
+  useEffect(() => {
+    const handleSlash = (e: KeyboardEvent) => {
+      if (e.key === '/' && !dropdownOpen) {
+        e.preventDefault();
+        inputEl.current?.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleSlash);
+    return () => window.removeEventListener('keydown', handleSlash);
+  }, [dropdownOpen]);
+
   const openDropdown = () => setDropdownOpen(true);
   const closeDropdown = () => setDropdownOpen(false);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // @ts-expect-error Why tf isn't this typed correctly
     setSearchTerm(e.target.value);
   };
 
   const handleSearchBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    // @ts-expect-error Why tf isn't this typed correctly
     if (e.relatedTarget?.className !== styles.episodeLink) {
       closeDropdown();
     }
   };
 
-  const handleSearchContainerKeyPress = (
+  const handleSearchContainerKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>,
   ) => {
     // I'm sure there's a better way to do this
@@ -54,12 +68,13 @@ function Search({ searchTerms, trie, episodeMap }: SearchProps) {
   });
 
   return (
-    <div className={styles.search} onKeyPress={handleSearchContainerKeyPress}>
+    <div className={styles.search} onKeyDown={handleSearchContainerKeyDown}>
       <label htmlFor="search">
         <p>Search</p>
         <input
           id="search"
           type="text"
+          ref={inputEl}
           autoComplete="off"
           className={styles.input}
           value={searchTerm}

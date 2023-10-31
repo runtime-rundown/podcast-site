@@ -4,6 +4,8 @@
     "module": "esnext",
     "target": "es2015",
     "lib": [
+      // Need to add "dom" to get event types working :O
+      "dom",
       "es2015"
     ],
     "allowJs": true,
@@ -13,6 +15,7 @@
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
