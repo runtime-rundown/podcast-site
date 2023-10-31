@@ -22,6 +22,7 @@ describe('Search', () => {
       />,
     );
     expect(screen.queryByRole('list')).not.toBeTruthy();
+    fireEvent.focus(screen.getByLabelText(/search/i));
     fireEvent.change(screen.getByLabelText(/search/i), {
       target: { value: 'about' },
     });
@@ -56,6 +57,7 @@ describe('Search', () => {
       />,
     );
     expect(screen.queryByRole('list')).not.toBeTruthy();
+    fireEvent.focus(screen.getByLabelText(/search/i));
     fireEvent.change(screen.getByLabelText(/search/i), {
       target: { value: 'react' },
     });
@@ -74,6 +76,7 @@ describe('Search', () => {
       />,
     );
     expect(screen.queryByRole('list')).not.toBeTruthy();
+    fireEvent.focus(screen.getByLabelText(/search/i));
     fireEvent.change(screen.getByLabelText(/search/i), {
       target: { value: 'an episode' },
     });
@@ -84,7 +87,5 @@ describe('Search', () => {
     expect(listItems[0].textContent).toMatch('An episode about React');
     expect(listItems[1].textContent).toMatch('An episode about testing');
     expect(listItems[2].textContent).toMatch('Another random episode');
-
-    // TODO: Test that highlighting works
   });
 });

@@ -19,6 +19,33 @@ type SearchProps = {
 
 function Search({ searchTerms, trie, episodeMap }: SearchProps) {
   const [searchTerm, setSearchTerm] = useState('');
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const openDropdown = () => setDropdownOpen(true);
+  const closeDropdown = () => setDropdownOpen(false);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // @ts-expect-error Why tf isn't this typed correctly
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSearchBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    // @ts-expect-error Why tf isn't this typed correctly
+    if (e.relatedTarget?.className !== styles.episodeLink) {
+      closeDropdown();
+    }
+  };
+
+  const handleSearchContainerKeyPress = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+  ) => {
+    // I'm sure there's a better way to do this
+    if (e.key === 'Escape') {
+      closeDropdown();
+    } else {
+      openDropdown();
+    }
+  };
 
   const titles = searchForTitles({
     trie,
@@ -26,13 +53,8 @@ function Search({ searchTerms, trie, episodeMap }: SearchProps) {
     searchTerm: searchTerm.toLowerCase(),
   });
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // @ts-expect-error Why tf isn't this typed correctly
-    setSearchTerm(e.target.value);
-  };
-
   return (
-    <div className={styles.search}>
+    <div className={styles.search} onKeyPress={handleSearchContainerKeyPress}>
       <label htmlFor="search">
         <p>Search</p>
         <input
@@ -41,21 +63,23 @@ function Search({ searchTerms, trie, episodeMap }: SearchProps) {
           className={styles.input}
           value={searchTerm}
           onChange={handleSearch}
-          // onBlur={closeDropdown}
+          onFocus={openDropdown}
+          onBlur={handleSearchBlur}
         />
       </label>
-      {titles.length > 0 && (
-        <div className={styles.searchResultsContainer}>
+      {titles.length > 0 && dropdownOpen && (
+        <div
+          className={styles.searchResultsContainer}
+          onBlur={handleSearchBlur}
+        >
           <ul className={styles.searchResults}>
             {titles.map(title => {
               const contentLines =
                 episodeMap[title].contentSnippet.split(/\. |\n/);
 
               const terms = searchTerm.trim().split(' ');
-
               const regex = new RegExp(`(${terms.join('|')})`, 'gi');
 
-              // TODO: Make highlighting work for multiple terms
               const matchingLines = contentLines.filter(line =>
                 line.match(regex),
               );

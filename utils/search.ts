@@ -8,7 +8,6 @@ export type Trie = {
   words: string[];
 };
 
-// TODO: Get searchTrie working for multiple words
 // TODO: Convert dash to space
 
 export function getMatchingWords(trie: Trie, input: string): string[] {
