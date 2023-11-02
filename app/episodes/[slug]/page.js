@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { processTitle } from '../../../utils/formatting';
 import styles from '../../../styles/EpisodePage.module.css';
 import Comments from '../../../components/Comments';
 import LineBreak from '../../../components/LineBreak';
@@ -6,10 +7,6 @@ import Hero from '../../../components/Hero';
 import { FEED, getFeed } from '../../../feeds/rss';
 
 export const revalidate = 604800;
-
-const processTitle = title => {
-  return title.toLowerCase().replaceAll(' ', '-');
-};
 
 async function EpisodePage({ params: { slug } }) {
   // With `revalidate` this is treated like getStaticProps
