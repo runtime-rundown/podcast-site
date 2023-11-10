@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
-import styles from '../styles/EpisodeCard.module.css';
 import { processTitle } from '../utils/formatting';
+import styles from '../styles/EpisodeCard.module.css';
 
 function truncate(str, n, useWordBoundary = true) {
   if (str.length <= n) {
