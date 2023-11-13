@@ -31,7 +31,7 @@ const colors = {
   7: '--color-base-teal',
 };
 
-const EpisodeCard = ({ href, title, isoDate, contentSnippet, ...rest }) => {
+const EpisodeCard = ({ title, isoDate, contentSnippet }) => {
   return (
     <div
       style={{ backgroundColor: `var(${getBackgroundColor()})` }}

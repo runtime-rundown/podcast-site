@@ -1,19 +1,27 @@
 import { FEED, getFeed } from '../feeds/rss';
 import Hero from '../components/Hero';
+import Search from '../components/Search';
 import EpisodeCard from '../components/EpisodeCard';
 import styles from '../styles/Index.module.css';
+import { processEpisodes } from '../utils/search';
 
 export const revalidate = 60;
 
 export default async function Home() {
-  const { items } = await getFeed(FEED.url);
+  const { items: episodes } = await getFeed(FEED.url);
+
+  // Do this work on the server to avoid memoizing on the client
+  const { trie, episodeMap, searchTerms } = processEpisodes(episodes);
 
   return (
     <>
       <Hero />
-      <h2>All Episodes</h2>
+      <div className={styles.episodesHeader}>
+        <h2>All Episodes</h2>
+        <Search trie={trie} searchTerms={searchTerms} episodeMap={episodeMap} />
+      </div>
       <div className={styles.gridWrapper}>
-        {items.map(item => {
+        {episodes.map(item => {
           return <EpisodeCard {...item} key={item.title} />;
         })}
       </div>

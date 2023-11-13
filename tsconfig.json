@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "module": "esnext",
+    "target": "es2015",
+    "lib": [
+      // Need to add "dom" to get event types working :O
+      "dom",
+      "es2015"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "./utils/**/*",
+    "./feeds/**/*",
+    "./components/**/*",
+    ".next/types/**/*.ts",
+    "next-env.d.ts",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

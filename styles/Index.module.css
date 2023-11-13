@@ -11,3 +11,9 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+.episodesHeader {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5em;
+}
