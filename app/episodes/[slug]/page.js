@@ -5,7 +5,6 @@ import Comments from '../../../components/Comments';
 import LineBreak from '../../../components/LineBreak';
 import Hero from '../../../components/Hero';
 import { FEED, getFeed } from '../../../feeds/rss';
-import { processTitle } from '../../../utils/formatting';
 
 export const revalidate = 604800;
 
