@@ -6,7 +6,7 @@ import LineBreak from '../../../components/LineBreak';
 import Hero from '../../../components/Hero';
 import { FEED, getFeed } from '../../../feeds/rss';
 
-export const revalidate = 604801;
+export const revalidate = 604800;
 
 async function EpisodePage({ params: { slug } }) {
   // With `revalidate` this is treated like getStaticProps
