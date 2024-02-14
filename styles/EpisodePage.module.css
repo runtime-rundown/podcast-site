@@ -21,11 +21,14 @@
 }
 
 .episodePlayer {
-  text-align: center;
-  padding: 8px 16px 24px 16px;
   border-radius: 4px;
-  background-color: rgba(16, 66, 133, 0.2);
   box-shadow: var(--base-box-shadow);
+  border: 5px solid var(--color-base-blue);
+  background-color: var(--color-base-white);
+}
+
+.episodePlayer::-webkit-media-controls-panel {
+  background-color: var(--color-base-white);
 }
 
 .episodeDetails {
@@ -66,5 +69,12 @@
 
   .episodePageCard {
     margin: 0;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .episodePlayer,
+  .episodePlayer::-webkit-media-controls-panel {
+    background-color: var(--color-base-blue);
   }
 }

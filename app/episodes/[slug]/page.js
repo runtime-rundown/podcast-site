@@ -34,7 +34,7 @@ async function EpisodePage({ params: { slug } }) {
       <div className={styles.episodeDetailsWrapper}>
         <div className={styles.titleWrapper}>
           <h3 className={styles.episodeTitle}>{episodeDetails.title}</h3>
-          <audio controls>
+          <audio className={styles.episodePlayer} controls>
             <source src={src} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
