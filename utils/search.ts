@@ -111,12 +111,12 @@ function truncate(content: string[]): string[] {
  * Split content into matching and non-matching parts
  */
 export function splitOnTerms(content = '', searchTerm = ''): string[] {
-  const terms = searchTerm.trim().split(' ');
-  const re = new RegExp(`(${terms.join('|')})`, 'gi');
-
   if (searchTerm === '') {
     return [content];
   }
+
+  const terms = searchTerm.trim().split(' ');
+  const re = new RegExp(`(${terms.join('|')})`, 'gi');
 
   return truncate(content.split(re));
 }
