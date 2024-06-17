@@ -91,7 +91,9 @@ function truncate(content: string[]): string[] {
 
   const halfMax = MAX_CONTENT_LENGTH / 2;
 
-  const [start, mid, end] = content;
+  const start = content.at(0);
+  const mid = content.slice(1, -1);
+  const end = content.at(-1);
 
   // TODO: Better way to do this than using halfMax
   const truncatedStart =
@@ -102,32 +104,21 @@ function truncate(content: string[]): string[] {
   const truncatedEnd =
     end.length < halfMax ? end : end.slice(0, halfMax) + '...';
 
-  return [truncatedStart, mid, truncatedEnd];
+  return [truncatedStart, ...mid, truncatedEnd];
 }
 
 /**
- * Split content into before input, input, and after input
+ * Split content into matching and non-matching parts
  */
-export function splitOnTerm(content = '', searchTerm = ''): string[] {
-  // TODO: Currently only highlights the first matching term, but would be nice
-  // to highlight all matching terms
+export function splitOnTerms(content = '', searchTerm = ''): string[] {
   const terms = searchTerm.trim().split(' ');
   const re = new RegExp(`(${terms.join('|')})`, 'gi');
-  const match = content.match(re);
 
-  if (!match) {
+  if (searchTerm === '') {
     return [content];
   }
 
-  const [firstMatch] = match;
-
-  const lineIndex = content.toLowerCase().indexOf(firstMatch.toLowerCase());
-
-  return truncate([
-    content.slice(0, lineIndex),
-    content.slice(lineIndex, lineIndex + firstMatch.length),
-    content.slice(lineIndex + firstMatch.length),
-  ]);
+  return truncate(content.split(re));
 }
 
 /**
