@@ -118,6 +118,9 @@ export function splitOnTerms(content = '', searchTerm = ''): string[] {
   const terms = searchTerm.trim().split(' ');
   const re = new RegExp(`(${terms.join('|')})`, 'gi');
 
+  // Splitting on a RegExp that includes capturing groups will include the
+  // matched terms in the result
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split#splitting_with_a_regexp_to_include_parts_of_the_separator_in_the_result
   return truncate(content.split(re));
 }
 
