@@ -65,8 +65,6 @@ export function searchForTitles({
       return new Set<string>(titles);
     }
 
-    // TODO: Revisit this - why am I adding to result and returning result
-    // instead of returning acc?
     const result = new Set<string>();
 
     titles.forEach(title => {
