@@ -65,6 +65,8 @@ export function searchForTitles({
       return new Set<string>(titles);
     }
 
+    // TODO: Revisit this - why am I adding to result and returning result
+    // instead of returning acc?
     const result = new Set<string>();
 
     titles.forEach(title => {
@@ -76,7 +78,21 @@ export function searchForTitles({
     return result;
   }, new Set<string>());
 
-  return [...titlesMatchingAllWords];
+  // Sort by how well the title matches the search term
+  return [...titlesMatchingAllWords].sort((a, b) => {
+    const lowerSearchTerm = searchTerm.toLowerCase();
+    const lowerA = a.toLowerCase();
+    const lowerB = b.toLowerCase();
+
+    // TODO: Improve this, could do a better fuzzy match
+    if (lowerA.includes(lowerSearchTerm) && !lowerB.includes(lowerSearchTerm)) {
+      return -1;
+    }
+    if (lowerB.includes(lowerSearchTerm) && !lowerA.includes(lowerSearchTerm)) {
+      return 1;
+    }
+    return 0;
+  });
 }
 
 /**

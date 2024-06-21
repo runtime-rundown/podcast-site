@@ -104,7 +104,14 @@ describe('Search utils', () => {
         const trie = createTrie(searchTerms);
         expect(
           searchForTitles({ trie, searchTerms, searchTerm: 'epis' }),
-        ).toEqual(['React', 'Testing', 'Other', 'Career']);
+        ).toEqual([
+          'React',
+          'Testing',
+          'Testing Two',
+          'Other',
+          'Career',
+          'Another',
+        ]);
       });
 
       it('trims whitespace around search', () => {
@@ -127,7 +134,7 @@ describe('Search utils', () => {
         const trie = createTrie(searchTerms);
         expect(
           searchForTitles({ trie, searchTerms, searchTerm: 'epIsOde an' }),
-        ).toEqual(['React', 'Testing', 'Other']);
+        ).toEqual(['React', 'Testing', 'Testing Two', 'Other', 'Another']);
       });
 
       it('returns empty array if one term doesnt match', () => {

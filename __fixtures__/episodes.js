@@ -1,7 +1,9 @@
 export const episodesFixture = [
   { title: 'React', contentSnippet: 'An episode about React\nalways React' },
   { title: 'Testing', contentSnippet: 'An episode about testing' },
+  { title: 'Testing Two', contentSnippet: 'Another episode about testing' },
   { title: 'Other', contentSnippet: 'Another random episode' },
+  { title: 'Another', contentSnippet: 'Another other random episode' },
   { title: 'Career', contentSnippet: 'Career episode' },
 ];
 
@@ -11,6 +13,14 @@ export const episodeMapFixture = {
     contentSnippet: 'An episode about React\nalways React',
   },
   Testing: { title: 'Testing', contentSnippet: 'An episode about testing' },
+  'Testing Two': {
+    title: 'Testing Two',
+    contentSnippet: 'Another episode about testing',
+  },
+  Another: {
+    title: 'Another',
+    contentSnippet: 'Another other random episode',
+  },
   Other: {
     title: 'Other',
     contentSnippet: 'Another random episode',
@@ -19,16 +29,24 @@ export const episodeMapFixture = {
 };
 
 export const searchTermsFixture = {
-  about: new Set(['React', 'Testing']),
+  about: new Set(['React', 'Testing', 'Testing Two']),
   always: new Set(['React']),
   an: new Set(['React', 'Testing']),
   career: new Set(['Career']),
-  other: new Set(['Other']),
-  another: new Set(['Other']),
-  episode: new Set(['React', 'Testing', 'Other', 'Career']),
+  other: new Set(['Other', 'Another']),
+  another: new Set(['Testing Two', 'Other', 'Another']),
+  episode: new Set([
+    'React',
+    'Testing',
+    'Testing Two',
+    'Other',
+    'Career',
+    'Another',
+  ]),
   react: new Set(['React']),
-  random: new Set(['Other']),
-  testing: new Set(['Testing']),
+  random: new Set(['Other', 'Another']),
+  two: new Set(['Testing Two']),
+  testing: new Set(['Testing', 'Testing Two']),
 };
 
 export const trieFixture = {
@@ -183,7 +201,13 @@ export const trieFixture = {
       },
       words: ['testing'],
     },
-    words: ['testing'],
+    w: {
+      o: {
+        words: ['two'],
+      },
+      words: ['two'],
+    },
+    words: ['testing', 'two'],
   },
   words: [],
 };

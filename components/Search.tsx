@@ -95,8 +95,6 @@ function Search({ searchTerms, trie, episodeMap }: SearchProps) {
           onBlur={handleSearchBlur}
         >
           <ul className={styles.searchResults}>
-            {/* TODO: Sort with the best matches first, e.g. "get the bas"
-            should put "Get the Basics Right" first */}
             {titles.map(title => {
               const contentLines =
                 episodeMap[title].contentSnippet.split(/\. |\n/);
