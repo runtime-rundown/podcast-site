@@ -127,6 +127,13 @@ describe('Search utils', () => {
           searchForTitles({ trie, searchTerms, searchTerm: 'xyz' }),
         ).toEqual([]);
       });
+
+      it('orders exact matches first', () => {
+        const trie = createTrie(searchTerms);
+        expect(
+          searchForTitles({ trie, searchTerms, searchTerm: 'another' }),
+        ).toEqual(['Another', 'Testing Two', 'Other']);
+      });
     });
 
     describe('multiple search terms', () => {
