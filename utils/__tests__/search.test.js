@@ -143,6 +143,8 @@ describe('Search utils', () => {
 
       describe('Sorting', () => {
         it('sorting fixtures are correct', () => {
+          // This test is just to ensure the data in the fixtures are
+          // internally consistent
           const episodeMap = createEpisodeMap(sortingFixture);
           expect(episodeMap).toEqual(sortingMapFixture);
           const sortingTerms = mapWordsToEpisodeTitles(sortingFixture);
