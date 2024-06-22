@@ -76,12 +76,14 @@ export function searchForTitles({
   }, new Set<string>());
 
   // Sort by how well the title matches the search term
-  return [...titlesMatchingAllWords].sort((a, b) => {
+  return [...titlesMatchingAllWords].sort((aTitle, bTitle) => {
     const lowerSearchTerm = searchTerm.toLowerCase();
-    const lowerA = a.toLowerCase();
-    const lowerB = b.toLowerCase();
+    const lowerA = aTitle.toLowerCase();
+    const lowerB = bTitle.toLowerCase();
 
     // TODO: Optimize this sorting
+
+    // Sort titles that start with the search term first
     if (lowerA.includes(lowerSearchTerm) && !lowerB.includes(lowerSearchTerm)) {
       return -1;
     }
@@ -89,7 +91,8 @@ export function searchForTitles({
       return 1;
     }
 
-    // Sort greater number of matching words first
+    // Sort greater number of matching words in the title before matching words
+    // in the content
     const aWords = lowerA.split(' ');
     const bWords = lowerB.split(' ');
 
