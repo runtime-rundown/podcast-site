@@ -52,31 +52,28 @@ export function searchForTitles({
   // TODO: Memoize each word's results
   const searchTermWords = searchTerm.trim().split(' ');
 
-  const titlesMatchingAllWords = searchTermWords.reduce(
-    (titlesMatchingWords, word) => {
-      const matches = getMatchingWords(trie, word);
+  const titlesMatchingAllWords = searchTermWords.reduce((acc, word) => {
+    const matches = getMatchingWords(trie, word);
 
-      if (!matches) {
-        return new Set<string>();
+    if (!matches) {
+      return acc;
+    }
+
+    const titles = getTitlesFromTrieResults(matches, searchTerms);
+
+    if (!acc.size) {
+      return new Set<string>(titles);
+    }
+
+    // Discard entries that are not in trie titles for current word
+    for (const title of acc) {
+      if (!titles.has(title)) {
+        acc.delete(title);
       }
+    }
 
-      const titles = getTitlesFromTrieResults(matches, searchTerms);
-
-      if (!titlesMatchingWords.size) {
-        return new Set<string>(titles);
-      }
-
-      // Discard entries that are not in trie titles for current word
-      for (const title of titlesMatchingWords) {
-        if (!titles.has(title)) {
-          titlesMatchingWords.delete(title);
-        }
-      }
-
-      return titlesMatchingWords;
-    },
-    new Set<string>(),
-  );
+    return acc;
+  }, new Set<string>());
 
   return [...titlesMatchingAllWords];
 }
