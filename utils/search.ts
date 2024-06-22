@@ -50,9 +50,9 @@ export function searchForTitles({
   searchTerm: string;
 }): string[] {
   // TODO: Memoize each word's results
-  const words = searchTerm.trim().split(' ');
+  const searchTermWords = searchTerm.trim().split(' ');
 
-  const titlesMatchingAllWords = words.reduce((acc, word) => {
+  const titlesMatchingAllWords = searchTermWords.reduce((acc, word) => {
     const matches = getMatchingWords(trie, word);
 
     if (!matches) {
@@ -65,15 +65,14 @@ export function searchForTitles({
       return new Set<string>(titles);
     }
 
-    const result = new Set<string>();
-
-    titles.forEach(title => {
-      if (acc.has(title)) {
-        result.add(title);
+    // Discard entries that are not in trie titles for current word
+    for (const title of acc) {
+      if (!titles.has(title)) {
+        acc.delete(title);
       }
-    });
+    }
 
-    return result;
+    return acc;
   }, new Set<string>());
 
   // Sort by how well the title matches the search term
