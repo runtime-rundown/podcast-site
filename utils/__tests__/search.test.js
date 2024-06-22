@@ -14,6 +14,12 @@ import {
   searchTermsFixture as searchTerms,
   trieFixture,
 } from '../../__fixtures__/episodes';
+import {
+  sortingMapFixture,
+  sortingFixture,
+  sortingSearchTermsFixture,
+  sortingTrieFixture,
+} from '../../__fixtures__/sorting';
 
 describe('Search utils', () => {
   it('creates a trie', () => {
@@ -30,8 +36,8 @@ describe('Search utils', () => {
 
   describe('mapWordsToEpisodeTitles', () => {
     it('creates a map of search terms to episode titles', () => {
-      const searchTerms = mapWordsToEpisodeTitles(episodesFixture);
-      expect(searchTerms).toEqual(searchTerms);
+      const expectedSearchTerms = mapWordsToEpisodeTitles(episodesFixture);
+      expect(searchTerms).toEqual(expectedSearchTerms);
     });
 
     it('search terms are lowercased', () => {
@@ -133,6 +139,32 @@ describe('Search utils', () => {
         expect(
           searchForTitles({ trie, searchTerms, searchTerm: 'another' }),
         ).toEqual(['Another', 'Testing Two', 'Other']);
+      });
+
+      describe('Sorting', () => {
+        it('sorting fixtures are correct', () => {
+          const episodeMap = createEpisodeMap(sortingFixture);
+          expect(episodeMap).toEqual(sortingMapFixture);
+          const sortingTerms = mapWordsToEpisodeTitles(sortingFixture);
+          expect(sortingTerms).toEqual(sortingSearchTermsFixture);
+          const trie = createTrie(sortingTerms);
+          expect(trie).toEqual(sortingTrieFixture);
+        });
+
+        it('orders match in title before match in content', () => {
+          expect(
+            searchForTitles({
+              trie: sortingTrieFixture,
+              searchTerms: sortingSearchTermsFixture,
+              searchTerm: 'FOO BAR',
+            }),
+          ).toEqual([
+            'Title with foo and bar',
+            'Title with foo',
+            'Title with bar',
+            'Title with baz',
+          ]);
+        });
       });
     });
 

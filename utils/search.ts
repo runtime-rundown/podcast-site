@@ -50,7 +50,7 @@ export function searchForTitles({
   searchTerm: string;
 }): string[] {
   // TODO: Memoize each word's results
-  const searchTermWords = searchTerm.trim().split(' ');
+  const searchTermWords = searchTerm.toLowerCase().trim().split(' ');
 
   const titlesMatchingAllWords = searchTermWords.reduce((acc, word) => {
     const matches = getMatchingWords(trie, word);
@@ -81,13 +81,28 @@ export function searchForTitles({
     const lowerA = a.toLowerCase();
     const lowerB = b.toLowerCase();
 
-    // TODO: Improve this, could do a better fuzzy match
+    // TODO: Optimize this sorting
     if (lowerA.includes(lowerSearchTerm) && !lowerB.includes(lowerSearchTerm)) {
       return -1;
     }
     if (lowerB.includes(lowerSearchTerm) && !lowerA.includes(lowerSearchTerm)) {
       return 1;
     }
+
+    // Sort greater number of matching words first
+    const aWords = lowerA.split(' ');
+    const bWords = lowerB.split(' ');
+
+    const aMatches = aWords.filter(word => searchTermWords.includes(word));
+    const bMatches = bWords.filter(word => searchTermWords.includes(word));
+
+    if (aMatches.length > bMatches.length) {
+      return -1;
+    }
+    if (bMatches.length > aMatches.length) {
+      return 1;
+    }
+
     return 0;
   });
 }
