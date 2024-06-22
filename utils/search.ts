@@ -50,31 +50,33 @@ export function searchForTitles({
   searchTerm: string;
 }): string[] {
   // TODO: Memoize each word's results
-  const words = searchTerm.trim().split(' ');
+  const searchTermWords = searchTerm.trim().split(' ');
 
-  const titlesMatchingAllWords = words.reduce((acc, word) => {
-    const matches = getMatchingWords(trie, word);
+  const titlesMatchingAllWords = searchTermWords.reduce(
+    (titlesMatchingWords, word) => {
+      const matches = getMatchingWords(trie, word);
 
-    if (!matches) {
-      return acc;
-    }
-
-    const titles = getTitlesFromTrieResults(matches, searchTerms);
-
-    if (!acc.size) {
-      return new Set<string>(titles);
-    }
-
-    const result = new Set<string>();
-
-    titles.forEach(title => {
-      if (acc.has(title)) {
-        result.add(title);
+      if (!matches) {
+        return new Set<string>();
       }
-    });
 
-    return result;
-  }, new Set<string>());
+      const titles = getTitlesFromTrieResults(matches, searchTerms);
+
+      if (!titlesMatchingWords.size) {
+        return new Set<string>(titles);
+      }
+
+      // Discard entries that are not in trie titles for current word
+      for (const title of titlesMatchingWords) {
+        if (!titles.has(title)) {
+          titlesMatchingWords.delete(title);
+        }
+      }
+
+      return titlesMatchingWords;
+    },
+    new Set<string>(),
+  );
 
   return [...titlesMatchingAllWords];
 }
