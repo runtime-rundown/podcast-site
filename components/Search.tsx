@@ -5,7 +5,7 @@ import {
   EpisodeMap,
   Trie,
   searchForTitles,
-  splitOnTerm,
+  splitOnTerms,
 } from '../utils/search';
 import { type SearchTerms } from '../utils/search';
 import { processTitle } from '../utils/formatting';
@@ -16,6 +16,12 @@ type SearchProps = {
   trie: Trie;
   episodeMap: EpisodeMap;
 };
+
+function maybeHilight(i: number) {
+  // Hacky: odd elements are normal, even are hilighted. We will probably need
+  // to fix this at some point :|
+  return i % 2 === 0 ? '' : styles.hilight;
+}
 
 function Search({ searchTerms, trie, episodeMap }: SearchProps) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -89,6 +95,8 @@ function Search({ searchTerms, trie, episodeMap }: SearchProps) {
           onBlur={handleSearchBlur}
         >
           <ul className={styles.searchResults}>
+            {/* TODO: Sort with the best matches first, e.g. "get the bas"
+            should put "Get the Basics Right" first */}
             {titles.map(title => {
               const contentLines =
                 episodeMap[title].contentSnippet.split(/\. |\n/);
@@ -100,10 +108,7 @@ function Search({ searchTerms, trie, episodeMap }: SearchProps) {
                 line.match(regex),
               );
 
-              const [titleStart, titleHilight, titleEnd] = splitOnTerm(
-                title,
-                searchTerm,
-              );
+              const splitTitle = splitOnTerms(title, searchTerm);
 
               return (
                 <li className={styles.episodeResult} key={title}>
@@ -112,22 +117,23 @@ function Search({ searchTerms, trie, episodeMap }: SearchProps) {
                     href={`/episodes/${processTitle(title)}`}
                   >
                     <div className={styles.episodeTitle}>
-                      <span>{titleStart}</span>
-                      <span className={styles.hilight}>{titleHilight}</span>
-                      <span>{titleEnd}</span>
+                      {splitTitle.map((titlePart, i) => (
+                        <span key={i} className={maybeHilight(i)}>
+                          {titlePart}
+                        </span>
+                      ))}
                     </div>
                     <div className={styles.contentLines}>
                       {matchingLines.map(line => {
-                        const [contentStart, contentHilight, contentEnd] =
-                          splitOnTerm(line, searchTerm);
+                        const splitContent = splitOnTerms(line, searchTerm);
 
                         return (
                           <div key={line} className={styles.episodeDescription}>
-                            <span>{contentStart}</span>
-                            <span className={styles.hilight}>
-                              {contentHilight}
-                            </span>
-                            <span>{contentEnd}</span>
+                            {splitContent.map((contentPart, i) => (
+                              <span key={i} className={maybeHilight(i)}>
+                                {contentPart}
+                              </span>
+                            ))}
                           </div>
                         );
                       })}
