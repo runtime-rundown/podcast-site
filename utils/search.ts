@@ -50,7 +50,7 @@ export function searchForTitles({
   searchTerm: string;
 }): string[] {
   // TODO: Memoize each word's results
-  const searchTermWords = searchTerm.trim().split(' ');
+  const searchTermWords = searchTerm.toLowerCase().trim().split(' ');
 
   const titlesMatchingAllWords = searchTermWords.reduce((acc, word) => {
     const matches = getMatchingWords(trie, word);
@@ -75,7 +75,39 @@ export function searchForTitles({
     return acc;
   }, new Set<string>());
 
-  return [...titlesMatchingAllWords];
+  // Sort by how well the title matches the search term
+  return [...titlesMatchingAllWords].sort((aTitle, bTitle) => {
+    const lowerSearchTerm = searchTerm.toLowerCase();
+    const lowerA = aTitle.toLowerCase();
+    const lowerB = bTitle.toLowerCase();
+
+    // TODO: Optimize this sorting
+
+    // Sort titles that start with the search term first
+    if (lowerA.includes(lowerSearchTerm) && !lowerB.includes(lowerSearchTerm)) {
+      return -1;
+    }
+    if (lowerB.includes(lowerSearchTerm) && !lowerA.includes(lowerSearchTerm)) {
+      return 1;
+    }
+
+    // Sort greater number of matching words in the title before matching words
+    // in the content
+    const aWords = lowerA.split(' ');
+    const bWords = lowerB.split(' ');
+
+    const aMatches = aWords.filter(word => searchTermWords.includes(word));
+    const bMatches = bWords.filter(word => searchTermWords.includes(word));
+
+    if (aMatches.length > bMatches.length) {
+      return -1;
+    }
+    if (bMatches.length > aMatches.length) {
+      return 1;
+    }
+
+    return 0;
+  });
 }
 
 /**
