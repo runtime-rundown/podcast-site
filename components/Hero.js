@@ -51,7 +51,7 @@ const Hero = ({ isShort = false }) => {
                   />
                   <div className={styles.HeroInformation}>
                     <h3>Evan Cooper</h3>
-                    <p>Frontend Engineer at Amazon, former U.S Army Infantry</p>
+                    <p>Principal Engineer @ Stackpoint Ventures, former U.S Army Infantry</p>
                   </div>
                 </div>
               </a>
