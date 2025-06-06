@@ -5,7 +5,7 @@ import EpisodeCard from '../components/EpisodeCard';
 import styles from '../styles/Index.module.css';
 import { processEpisodes } from '../utils/search';
 
-export const revalidate = 62;
+export const revalidate = 61;
 
 export default async function Home() {
   const { items: episodes } = await getFeed(FEED.url);
